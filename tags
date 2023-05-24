@@ -1,0 +1,49 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/mnt/D/workspace/c/01_active/e4/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+NODE_RADIUS	src/main.c	/^#define NODE_RADIUS /;"	d	file:
+NUM_NODES	src/main.c	/^#define NUM_NODES /;"	d	file:
+Node	src/main.c	/^} Node;$/;"	t	typeref:struct:__anon6a96e1720108	file:
+README.md	README.md	1;"	F	epoch:1684960758
+WINDOW_HEIGHT	src/main.c	/^#define WINDOW_HEIGHT /;"	d	file:
+WINDOW_WIDTH	src/main.c	/^#define WINDOW_WIDTH /;"	d	file:
+__anon6a96e1720108	src/main.c	/^typedef struct {$/;"	s	file:
+__anon6a96e1720108::text	src/main.c	/^    char text[20];  \/\/ Store text for each node$/;"	m	struct:__anon6a96e1720108	typeref:typename:char[20]	file:	access:public
+__anon6a96e1720108::x	src/main.c	/^    int x;$/;"	m	struct:__anon6a96e1720108	typeref:typename:int	file:	access:public
+__anon6a96e1720108::y	src/main.c	/^    int y;$/;"	m	struct:__anon6a96e1720108	typeref:typename:int	file:	access:public
+_build	project.sh	/^_build() {$/;"	f
+_clean	project.sh	/^_clean() {$/;"	f
+_compile	project.sh	/^_compile() {$/;"	f
+_createBuildDir	project.sh	/^_createBuildDir() {$/;"	f
+_findStrings	project.sh	/^_findStrings() {$/;"	f
+_findSymbolsInObj	project.sh	/^_findSymbolsInObj() {$/;"	f
+_generateTags	project.sh	/^_generateTags() {$/;"	f
+_run	project.sh	/^_run() {$/;"	f
+_valgrind	project.sh	/^_valgrind() {$/;"	f
+cleanupSDL	src/main.c	/^void cleanupSDL() {$/;"	f	typeref:typename:void	signature:()
+font	src/main.c	/^TTF_Font* font = NULL;  \/\/ Declare a font object$/;"	v	typeref:typename:TTF_Font *
+generateNodes	src/main.c	/^void generateNodes() {$/;"	f	typeref:typename:void	signature:()
+initializeSDL	src/main.c	/^int initializeSDL() {$/;"	f	typeref:typename:int	signature:()
+main	src/main.c	/^int main() {$/;"	f	typeref:typename:int	signature:()
+main.c	src/main.c	1;"	F	epoch:1684961172
+nodeHeight	src/main.c	/^int nodeHeight = 10;$/;"	v	typeref:typename:int
+nodeWidth	src/main.c	/^int nodeWidth = 10;$/;"	v	typeref:typename:int
+nodes	src/main.c	/^Node nodes[NUM_NODES];$/;"	v	typeref:typename:Node[]
+p	project.sh	/^p() {$/;"	f
+pointInsideRect	src/main.c	/^int pointInsideRect(int x, int y, SDL_Rect rect) {$/;"	f	typeref:typename:int	signature:(int x,int y,SDL_Rect rect)
+project.sh	project.sh	1;"	F	epoch:1684961284
+renderNodes	src/main.c	/^void renderNodes() {$/;"	f	typeref:typename:void	signature:()
+renderer	src/main.c	/^SDL_Renderer* renderer = NULL;$/;"	v	typeref:typename:SDL_Renderer *
+selectedNode	src/main.c	/^int selectedNode = -1;  \/\/ -1 indicates no node is currently selected$/;"	v	typeref:typename:int
+text	src/main.c	/^    char text[20];  \/\/ Store text for each node$/;"	m	struct:__anon6a96e1720108	typeref:typename:char[20]	file:	access:public
+window	src/main.c	/^SDL_Window* window = NULL;$/;"	v	typeref:typename:SDL_Window *
+x	src/main.c	/^    int x;$/;"	m	struct:__anon6a96e1720108	typeref:typename:int	file:	access:public
+y	src/main.c	/^    int y;$/;"	m	struct:__anon6a96e1720108	typeref:typename:int	file:	access:public
