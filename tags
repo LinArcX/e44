@@ -9,41 +9,114 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
-NODE_RADIUS	src/main.c	/^#define NODE_RADIUS /;"	d	file:
-NUM_NODES	src/main.c	/^#define NUM_NODES /;"	d	file:
-Node	src/main.c	/^} Node;$/;"	t	typeref:struct:__anon6a96e1720108	file:
+App	src/app.h	/^}App;$/;"	t	typeref:struct:SDLApp
+Button	src/button.h	/^} Button;$/;"	t	typeref:struct:SDLButton
+Label	src/label.h	/^} Label;$/;"	t	typeref:struct:SDLLabel
 README.md	README.md	1;"	F	epoch:1684960758
-WINDOW_HEIGHT	src/main.c	/^#define WINDOW_HEIGHT /;"	d	file:
-WINDOW_WIDTH	src/main.c	/^#define WINDOW_WIDTH /;"	d	file:
-__anon6a96e1720108	src/main.c	/^typedef struct {$/;"	s	file:
-__anon6a96e1720108::text	src/main.c	/^    char text[20];  \/\/ Store text for each node$/;"	m	struct:__anon6a96e1720108	typeref:typename:char[20]	file:	access:public
-__anon6a96e1720108::x	src/main.c	/^    int x;$/;"	m	struct:__anon6a96e1720108	typeref:typename:int	file:	access:public
-__anon6a96e1720108::y	src/main.c	/^    int y;$/;"	m	struct:__anon6a96e1720108	typeref:typename:int	file:	access:public
+SDLApp	src/app.h	/^typedef struct SDLApp$/;"	s
+SDLApp::font	src/app.h	/^  TTF_Font* font;$/;"	m	struct:SDLApp	typeref:typename:TTF_Font *	access:public
+SDLApp::height	src/app.h	/^  uint16_t height;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
+SDLApp::renderer	src/app.h	/^  SDL_Renderer* renderer;$/;"	m	struct:SDLApp	typeref:typename:SDL_Renderer *	access:public
+SDLApp::width	src/app.h	/^  uint16_t width;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
+SDLApp::window	src/app.h	/^  SDL_Window* window;$/;"	m	struct:SDLApp	typeref:typename:SDL_Window *	access:public
+SDLApp::x	src/app.h	/^  int16_t x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
+SDLApp::y	src/app.h	/^  int16_t y;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
+SDLButton	src/button.h	/^typedef struct SDLButton$/;"	s
+SDLButton::height	src/button.h	/^  int height; \/\/ 10$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+SDLButton::hover	src/button.h	/^  bool hover;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
+SDLButton::isLeftClicked	src/button.h	/^  bool isLeftClicked;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
+SDLButton::isRightClicked	src/button.h	/^  bool isRightClicked;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
+SDLButton::radius	src/button.h	/^  int radius; \/\/ 10$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+SDLButton::text	src/button.h	/^  char text[40];$/;"	m	struct:SDLButton	typeref:typename:char[40]	access:public
+SDLButton::width	src/button.h	/^  int width;  \/\/ 10$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+SDLButton::x	src/button.h	/^  int x;$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+SDLButton::y	src/button.h	/^  int y;$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+SDLLabel	src/label.h	/^typedef struct SDLLabel$/;"	s
+SDLLabel::backgroundColor	src/label.h	/^  const char* backgroundColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+SDLLabel::height	src/label.h	/^  uint16_t height;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
+SDLLabel::radius	src/label.h	/^  int64_t radius;$/;"	m	struct:SDLLabel	typeref:typename:int64_t	access:public
+SDLLabel::text	src/label.h	/^  const char* text;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+SDLLabel::textColor	src/label.h	/^  const char* textColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+SDLLabel::width	src/label.h	/^  uint16_t width;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
+SDLLabel::x	src/label.h	/^  int16_t x;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public
+SDLLabel::y	src/label.h	/^  int16_t y;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public
+_APP_H	src/app.h	/^#define _APP_H$/;"	d
+_BUTTON_H	src/button.h	/^#define _BUTTON_H$/;"	d
+_LABEL_H	src/label.h	/^#define _LABEL_H$/;"	d
+_TYPES_HPP	src/types.h	/^#define _TYPES_HPP$/;"	d
+_UTIL_H	src/util.h	/^#define _UTIL_H$/;"	d
 _build	project.sh	/^_build() {$/;"	f
 _clean	project.sh	/^_clean() {$/;"	f
 _compile	project.sh	/^_compile() {$/;"	f
 _createBuildDir	project.sh	/^_createBuildDir() {$/;"	f
+_debug	project.sh	/^_debug() {$/;"	f
 _findStrings	project.sh	/^_findStrings() {$/;"	f
 _findSymbolsInObj	project.sh	/^_findSymbolsInObj() {$/;"	f
 _generateTags	project.sh	/^_generateTags() {$/;"	f
 _run	project.sh	/^_run() {$/;"	f
 _valgrind	project.sh	/^_valgrind() {$/;"	f
-cleanupSDL	src/main.c	/^void cleanupSDL() {$/;"	f	typeref:typename:void	signature:()
-font	src/main.c	/^TTF_Font* font = NULL;  \/\/ Declare a font object$/;"	v	typeref:typename:TTF_Font *
-generateNodes	src/main.c	/^void generateNodes() {$/;"	f	typeref:typename:void	signature:()
-initializeSDL	src/main.c	/^int initializeSDL() {$/;"	f	typeref:typename:int	signature:()
-main	src/main.c	/^int main() {$/;"	f	typeref:typename:int	signature:()
-main.c	src/main.c	1;"	F	epoch:1684961172
-nodeHeight	src/main.c	/^int nodeHeight = 10;$/;"	v	typeref:typename:int
-nodeWidth	src/main.c	/^int nodeWidth = 10;$/;"	v	typeref:typename:int
-nodes	src/main.c	/^Node nodes[NUM_NODES];$/;"	v	typeref:typename:Node[]
+app	src/app.c	/^App* app;$/;"	v	typeref:typename:App *
+app.c	src/app.c	1;"	F	epoch:1685227804
+app.h	src/app.h	1;"	F	epoch:1685204938
+backgroundColor	src/label.h	/^  const char* backgroundColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+button.c	src/button.c	1;"	F	epoch:1685134524
+button.h	src/button.h	1;"	F	epoch:1685134470
+cleanup	src/app.c	/^void cleanup()$/;"	f	typeref:typename:void	signature:()
+createButton	src/button.c	/^void createButton()$/;"	f	typeref:typename:void	signature:()
+createLable	src/label.c	/^int createLable(Label label) {$/;"	f	typeref:typename:int	signature:(Label label)
+createScene	src/app.c	/^void createScene()$/;"	f	typeref:typename:void	signature:()
+font	src/app.h	/^  TTF_Font* font;$/;"	m	struct:SDLApp	typeref:typename:TTF_Font *	access:public
+generateNodes	src/button.c	/^void generateNodes() {$/;"	f	typeref:typename:void	signature:()
+handleEvents	src/app.c	/^void handleEvents()$/;"	f	typeref:typename:void	signature:()
+height	src/app.h	/^  uint16_t height;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
+height	src/button.h	/^  int height; \/\/ 10$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+height	src/label.h	/^  uint16_t height;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
+hexToRGBA	src/util.c	/^void hexToRGBA(const char* hexColor, uint8_t* r, uint8_t* g, uint8_t* b, uint8_t* a)$/;"	f	typeref:typename:void	signature:(const char * hexColor,uint8_t * r,uint8_t * g,uint8_t * b,uint8_t * a)
+hover	src/button.h	/^  bool hover;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
+initialize	src/app.c	/^int initialize()$/;"	f	typeref:typename:int	signature:()
+int16_t	src/types.h	/^typedef short int16_t;$/;"	t	typeref:typename:short
+int32_t	src/types.h	/^typedef int int32_t;$/;"	t	typeref:typename:int
+int64_t	src/types.h	/^typedef long long int int64_t;$/;"	t	typeref:typename:long long int
+int8_t	src/types.h	/^typedef char int8_t;$/;"	t	typeref:typename:char
+isLeftClicked	src/button.h	/^  bool isLeftClicked;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
+isRightClicked	src/button.h	/^  bool isRightClicked;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
+label	src/app.c	/^Label label;$/;"	v	typeref:typename:Label
+label.c	src/label.c	1;"	F	epoch:1685221261
+label.h	src/label.h	1;"	F	epoch:1685219866
+labelHoverHandler	src/app.c	/^void labelHoverHandler()$/;"	f	typeref:typename:void	signature:()
+labelLeftButtonHandler	src/app.c	/^void labelLeftButtonHandler()$/;"	f	typeref:typename:void	signature:()
+labelRightButtonHandler	src/app.c	/^void labelRightButtonHandler()$/;"	f	typeref:typename:void	signature:()
+main	src/main.c	/^int main()$/;"	f	typeref:typename:int	signature:()
+main.c	src/main.c	1;"	F	epoch:1685215689
+mouseHoverEventUpHandler	src/app.c	/^void mouseHoverEventUpHandler(int mouseX, int mouseY)$/;"	f	typeref:typename:void	signature:(int mouseX,int mouseY)
+mouseLeftClickEventDownHandler	src/app.c	/^void mouseLeftClickEventDownHandler(int buttonX, int buttonY)$/;"	f	typeref:typename:void	signature:(int buttonX,int buttonY)
+mouseLeftClickEventUpHandler	src/app.c	/^void mouseLeftClickEventUpHandler(int buttonX, int buttonY)$/;"	f	typeref:typename:void	signature:(int buttonX,int buttonY)
+mouseRightClickEventDownHandler	src/app.c	/^void mouseRightClickEventDownHandler(int buttonX, int buttonY)$/;"	f	typeref:typename:void	signature:(int buttonX,int buttonY)
+mouseRightClickEventUpHandler	src/app.c	/^void mouseRightClickEventUpHandler(int buttonX, int buttonY)$/;"	f	typeref:typename:void	signature:(int buttonX,int buttonY)
 p	project.sh	/^p() {$/;"	f
-pointInsideRect	src/main.c	/^int pointInsideRect(int x, int y, SDL_Rect rect) {$/;"	f	typeref:typename:int	signature:(int x,int y,SDL_Rect rect)
-project.sh	project.sh	1;"	F	epoch:1684961284
-renderNodes	src/main.c	/^void renderNodes() {$/;"	f	typeref:typename:void	signature:()
-renderer	src/main.c	/^SDL_Renderer* renderer = NULL;$/;"	v	typeref:typename:SDL_Renderer *
-selectedNode	src/main.c	/^int selectedNode = -1;  \/\/ -1 indicates no node is currently selected$/;"	v	typeref:typename:int
-text	src/main.c	/^    char text[20];  \/\/ Store text for each node$/;"	m	struct:__anon6a96e1720108	typeref:typename:char[20]	file:	access:public
-window	src/main.c	/^SDL_Window* window = NULL;$/;"	v	typeref:typename:SDL_Window *
-x	src/main.c	/^    int x;$/;"	m	struct:__anon6a96e1720108	typeref:typename:int	file:	access:public
-y	src/main.c	/^    int y;$/;"	m	struct:__anon6a96e1720108	typeref:typename:int	file:	access:public
+popup.c	src/popup.c	1;"	F	epoch:1684961791
+popup.h	src/popup.h	1;"	F	epoch:1684961794
+project.sh	project.sh	1;"	F	epoch:1685221950
+radius	src/button.h	/^  int radius; \/\/ 10$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+radius	src/label.h	/^  int64_t radius;$/;"	m	struct:SDLLabel	typeref:typename:int64_t	access:public
+renderer	src/app.h	/^  SDL_Renderer* renderer;$/;"	m	struct:SDLApp	typeref:typename:SDL_Renderer *	access:public
+text	src/button.h	/^  char text[40];$/;"	m	struct:SDLButton	typeref:typename:char[40]	access:public
+text	src/label.h	/^  const char* text;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+textColor	src/label.h	/^  const char* textColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+types.h	src/types.h	1;"	F	epoch:1685199485
+uint16_t	src/types.h	/^typedef unsigned short uint16_t;$/;"	t	typeref:typename:unsigned short
+uint32_t	src/types.h	/^typedef unsigned int uint32_t;$/;"	t	typeref:typename:unsigned int
+uint64_t	src/types.h	/^typedef unsigned long long int uint64_t;$/;"	t	typeref:typename:unsigned long long int
+uint8_t	src/types.h	/^typedef unsigned char uint8_t;$/;"	t	typeref:typename:unsigned char
+util.c	src/util.c	1;"	F	epoch:1685204545
+util.h	src/util.h	1;"	F	epoch:1685204769
+width	src/app.h	/^  uint16_t width;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
+width	src/button.h	/^  int width;  \/\/ 10$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+width	src/label.h	/^  uint16_t width;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
+window	src/app.h	/^  SDL_Window* window;$/;"	m	struct:SDLApp	typeref:typename:SDL_Window *	access:public
+x	src/app.h	/^  int16_t x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
+x	src/button.h	/^  int x;$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+x	src/label.h	/^  int16_t x;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public
+y	src/app.h	/^  int16_t y;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
+y	src/button.h	/^  int y;$/;"	m	struct:SDLButton	typeref:typename:int	access:public
+y	src/label.h	/^  int16_t y;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public

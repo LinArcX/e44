@@ -62,7 +62,7 @@ _compile() {
   src="src/*.c"
 
   echo ">>> Compiling ($mode)"
-  $compiler $flags -o $build_dir/$app $src
+  $compiler $mode_flags $flags -o $build_dir/$app $src
 }
 
 _build() {
@@ -70,6 +70,13 @@ _build() {
   _generateTags
   _compile
   cp assets/monaco.ttf $build_dir
+  #cp assets/FantasqueSansMono.ttf $build_dir
+}
+
+_debug() {
+  cd $build_dir
+  seergdb -s $app
+  cd ../..
 }
 
 _run() {
@@ -97,12 +104,14 @@ _findSymbolsInObj() {
 }
 
 p() {
-  commands=("build" "run" "clean" "generate tags" "valgrind" "find strings in the binary" "list symbols from object files")
+  commands=("build" "run" "clean" "debug" "generate tags" "valgrind" "find strings in the binary" "list symbols from object files")
   selected=$(printf '%s\n' "${commands[@]}" | fzf --header="project:")
 
   case $selected in
     "build")
       _build;;
+    "debug")
+      _debug;;
     "run")
       _run;;
     "clean")
