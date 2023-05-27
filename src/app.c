@@ -1,57 +1,101 @@
 #include "app.h"
 #include "label.h"
+#include "button.h"
 
 App* app;
-Label label;
+Label lblAdd;
+Button btnAdd;
 
 void createScene()
 {
-  // label
-  label.x = 20;
-  label.y = 20;
-  label.radius = 50;
-  label.width = 45;
-  label.height = 20;
-  label.text = "Label";
-  label.textColor = "#DADADA";
-  label.backgroundColor = "#262626";
-  createLable(label);
+  // lblAdd
+  lblAdd.x = 20;
+  lblAdd.y = 20;
+  lblAdd.radius = 50;
+  lblAdd.width = 45;
+  lblAdd.height = 20;
+  lblAdd.text = "Add: ";
+  lblAdd.textColor = "#DADADA";
+  lblAdd.backgroundColor = "#262626";
+  createLable(lblAdd);
+
+  // btnAdd
+  btnAdd.x = lblAdd.x + lblAdd.width + 10;
+  btnAdd.y = lblAdd.y;
+  btnAdd.radius = 50;
+  btnAdd.width = 60;
+  btnAdd.height = lblAdd.height;
+  btnAdd.text = "Click!";
+  btnAdd.textColor = "#DADADA";
+  btnAdd.backgroundColor = "#262626";
+  btnAdd.hoverTextColor = "#212121";
+  btnAdd.hoverBackgroundColor = "#FF7043";
+  createButton(btnAdd);
 }
 
-void labelLeftButtonHandler()
+void lblAddLeftButtonHandler()
 {
-  SDL_Log("label leftButton Clicked");
+  SDL_Log("lblAdd leftButton Clicked");
 }
 
-void labelRightButtonHandler()
+void lblAddRightButtonHandler()
 {
-  SDL_Log("label rightButton Clicked");
+  SDL_Log("lblAdd rightButton Clicked");
 }
 
-void labelHoverHandler()
+void btnAddLeftButtonHandler()
 {
-  SDL_Log("label Hover Event Activated!");
+  SDL_Log("btnAdd leftButton Clicked");
 }
 
-void mouseHoverEventUpHandler(int mouseX, int mouseY)
+void btnAddRightButtonHandler()
 {
+  SDL_Log("btnAdd rightButton Clicked");
 }
 
-void mouseLeftClickEventDownHandler(int buttonX, int buttonY)
+void btnAddHoverHandler()
 {
-  // label
-  if (buttonX >= label.x && buttonX <= label.x + label.width && buttonY >= label.y && buttonY <= label.y + label.height)
+  SDL_Log("btnAdd Hover Event Activated!");
+  btnAdd.textColor = btnAdd.hoverTextColor;
+  btnAdd.backgroundColor = btnAdd.hoverBackgroundColor;
+}
+
+void mouseHoverEventUpHandler(int x, int y)
+{
+  // btnAdd
+  if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + 4 && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + 4)
   {
-    labelLeftButtonHandler();
+    btnAddHoverHandler();
   }
 }
 
-void mouseRightClickEventDownHandler(int buttonX, int buttonY)
+void mouseLeftClickEventDownHandler(int x, int y)
 {
-  // label
-  if (buttonX >= label.x && buttonX <= label.x + label.width && buttonY >= label.y && buttonY <= label.y + label.height)
+  // lblAdd
+  if (x >= lblAdd.x && x <= lblAdd.x + lblAdd.width + 4 && y >= lblAdd.y && y <= lblAdd.y + lblAdd.height + 4)
   {
-    labelRightButtonHandler();
+    lblAddLeftButtonHandler();
+  }
+
+  // btnAdd
+  if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + 4 && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + 4)
+  {
+    btnAddLeftButtonHandler();
+  }
+}
+
+void mouseRightClickEventDownHandler(int x, int y)
+{
+  // lblAdd
+  if (x >= lblAdd.x && x <= lblAdd.x + lblAdd.width + 4 && y >= lblAdd.y && y <= lblAdd.y + lblAdd.height + 4)
+  {
+    lblAddRightButtonHandler();
+  }
+
+  // lblAdd
+  if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + 4 && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + 4)
+  {
+    btnAddRightButtonHandler();
   }
 }
 

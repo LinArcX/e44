@@ -1,34 +1,85 @@
-//#include "button.h"
+#include <stddef.h>
 
-//Button button = {
-//  .width = 800,
-//  .height = 600,
-//  .font = NULL,
-//  .window = NULL,
-//  .renderer = NULL
-//};
+#include "button.h"
+#include "app.h"
+#include "util.h"
+
+int createButton(Button button) {
+  uint8_t red, green, blue, alpha;
+
+  hexToRGBA(button.textColor, &red, &green, &blue, &alpha);
+  SDL_Color textColor = { red, green, blue, alpha };
+
+  hexToRGBA(button.backgroundColor, &red, &green, &blue, &alpha);
+  SDL_Color backgroundColor = { red, green, blue, alpha };
+
+  // Create a surface from the rendered text
+  SDL_Surface* surface = TTF_RenderText_Blended(app->font, button.text, textColor);
+
+  if (!surface)
+  {
+      SDL_Log("Failed to create surface: %s", TTF_GetError());
+      SDL_FreeSurface(surface);
+      return EXIT_FAILURE;
+  }
+
+  SDL_Texture* texture = SDL_CreateTextureFromSurface(app->renderer, surface);
+  if (!texture)
+  {
+      SDL_Log("Failed to create texture: %s", SDL_GetError());
+      SDL_DestroyTexture(texture);
+      return EXIT_FAILURE;
+  }
+
+  // Create a destination rectangle for background of button
+  SDL_Rect backgroundRect = { button.x, button.y, button.width + 4, button.height + 4 };
+  SDL_SetRenderDrawColor(app->renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+  SDL_RenderFillRect(app->renderer, &backgroundRect);
+
+  // Render rounded corners
+  SDL_SetRenderDrawColor(app->renderer, 0, 0, 0, 0); // Set color to transparent
+  SDL_SetRenderDrawBlendMode(app->renderer, SDL_BLENDMODE_BLEND);
+  SDL_Rect corners[4] = {
+    { button.x, button.y, button.radius, button.radius },
+    { button.x + button.width - button.radius, button.y, button.radius, button.radius },
+    { button.x, button.y + button.height - button.radius, button.radius, button.radius },
+    { button.x + button.width - button.radius, button.y + button.height - button.radius, button.radius, button.radius }
+  };
+  for (int i = 0; i < 4; i++)
+  {
+    SDL_RenderFillRect(app->renderer, &corners[i]);
+  }
+
+  // Create a destination rectangle for rendering the texture
+  SDL_Rect textRect = { button.x + 2, button.y + 2, button.width, button.height };
+  // Render the texture on the screen
+  SDL_RenderCopy(app->renderer, texture, NULL, &textRect);
+
+  SDL_FreeSurface(surface);
+  SDL_DestroyTexture(texture);
+
+  return EXIT_SUCCESS;
+}
+
+//void createButton()
+//{
 //
-
-
-void createButton()
-{
-
-}
-
-void generateNodes() {
-    //nodes[0].x = WINDOW_WIDTH / 4;
-    //nodes[0].y = WINDOW_HEIGHT / 2;
-    //sprintf(nodes[0].text, "Node 1");  // Set text for the first node
-
-    //nodes[1].x = (3 * WINDOW_WIDTH) / 4;
-    //nodes[1].y = WINDOW_HEIGHT / 2;
-    //sprintf(nodes[1].text, "Node 2");  // Set text for the second node
-    ////for (int i = 0; i < NUM_NODES; i++) {
-    ////    nodes[i].x = rand() % WINDOW_WIDTH;
-    ////    nodes[i].y = rand() % WINDOW_HEIGHT;
-    ////    sprintf(nodes[i].text, "Node %d", i);  // Set text for each node
-    ////}
-}
+//}
+//
+//void generateNodes() {
+//    //nodes[0].x = WINDOW_WIDTH / 4;
+//    //nodes[0].y = WINDOW_HEIGHT / 2;
+//    //sprintf(nodes[0].text, "Node 1");  // Set text for the first node
+//
+//    //nodes[1].x = (3 * WINDOW_WIDTH) / 4;
+//    //nodes[1].y = WINDOW_HEIGHT / 2;
+//    //sprintf(nodes[1].text, "Node 2");  // Set text for the second node
+//    ////for (int i = 0; i < NUM_NODES; i++) {
+//    ////    nodes[i].x = rand() % WINDOW_WIDTH;
+//    ////    nodes[i].y = rand() % WINDOW_HEIGHT;
+//    ////    sprintf(nodes[i].text, "Node %d", i);  // Set text for each node
+//    ////}
+//}
 
 //int pointInsideRect(int x, int y, SDL_Rect rect) {
 //    return (x >= rect.x && x <= (rect.x + rect.w) && y >= rect.y && y <= (rect.y + rect.h));
@@ -98,3 +149,12 @@ void generateNodes() {
 //
 //    SDL_RenderPresent(renderer);
 //}
+//
+////Button button = {
+//  .width = 800,
+//  .height = 600,
+//  .font = NULL,
+//  .window = NULL,
+//  .renderer = NULL
+//};
+//
