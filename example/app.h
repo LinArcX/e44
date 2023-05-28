@@ -24,7 +24,7 @@ typedef struct SDLApp
 extern App* app;
 
 int initialize();
-void handleEvents();
+void render();
 void cleanup();
 
 #endif

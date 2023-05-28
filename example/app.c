@@ -107,13 +107,14 @@ int initialize()
   return EXIT_SUCCESS;
 }
 
+//------------- Rendering -------------//
 void createScene()
 {
   createLable(app->renderer, app->font, lblAdd);
   createButton(app->renderer, app->font, btnAdd);
 }
 
-void handleEvents()
+void render()
 {
   int quit = 0;
   SDL_Event e;
@@ -170,12 +171,12 @@ void handleEvents()
     createScene();
 
     SDL_RenderPresent(app->renderer);
-
     // we need this delay, unless we'll face a high cpu usage. a number between 60 and 100 is ok.
     SDL_Delay(60);
   }
 }
 
+//------------- CleanUp -------------//
 void cleanup()
 {
   TTF_CloseFont(app->font);

@@ -7,7 +7,7 @@ int main()
     return EXIT_FAILURE;
   }
 
-  handleEvents();
+  render();
 
   cleanup();
   return EXIT_SUCCESS;
