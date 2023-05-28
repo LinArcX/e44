@@ -42,6 +42,7 @@ SDLApp::renderer	example/app.h	/^  SDL_Renderer* renderer;$/;"	m	struct:SDLApp	t
 SDLApp::rightClickDownHandler	example/app.h	/^  Node* rightClickDownHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::rightClickUpHandler	example/app.h	/^  Node* rightClickUpHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::widgetCreatorHandler	example/app.h	/^  Node* widgetCreatorHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+SDLApp::widgetPositionChangedHandler	example/app.h	/^  Node* widgetPositionChangedHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::width	example/app.h	/^  uint16_t width;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
 SDLApp::window	example/app.h	/^  SDL_Window* window;$/;"	m	struct:SDLApp	typeref:typename:SDL_Window *	access:public
 SDLApp::x	example/app.h	/^  int16_t x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
@@ -94,8 +95,8 @@ _generateTags	project.sh	/^_generateTags() {$/;"	f
 _run	project.sh	/^_run() {$/;"	f
 _valgrind	project.sh	/^_valgrind() {$/;"	f
 app	example/app.c	/^App* app;$/;"	v	typeref:typename:App *
-app.c	example/app.c	1;"	F	epoch:1685281240
-app.h	example/app.h	1;"	F	epoch:1685280921
+app.c	example/app.c	1;"	F	epoch:1685296019
+app.h	example/app.h	1;"	F	epoch:1685282328
 backgroundColor	example/app.h	/^  const char* backgroundColor;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 backgroundColor	lib/button.h	/^  const char* backgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 backgroundColor	lib/label.h	/^  const char* backgroundColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
@@ -135,6 +136,7 @@ initApp	example/app.c	/^void initApp()$/;"	f	typeref:typename:void	signature:()
 initBtnAdd	example/btnAdd.c	/^void initBtnAdd()$/;"	f	typeref:typename:void	signature:()
 initFont	example/app.c	/^int initFont()$/;"	f	typeref:typename:int	signature:()
 initLblAdd	example/lblAdd.c	/^void initLblAdd()$/;"	f	typeref:typename:void	signature:()
+initSDL	example/app.c	/^int initSDL()$/;"	f	typeref:typename:int	signature:()
 initialize	example/app.c	/^int initialize()$/;"	f	typeref:typename:int	signature:()
 int16_t	lib/types.h	/^typedef short int16_t;$/;"	t	typeref:typename:short
 int32_t	lib/types.h	/^typedef int int32_t;$/;"	t	typeref:typename:int
@@ -180,10 +182,12 @@ uint8_t	lib/types.h	/^typedef unsigned char uint8_t;$/;"	t	typeref:typename:unsi
 util.c	lib/util.c	1;"	F	epoch:1685279851
 util.h	lib/util.h	1;"	F	epoch:1685279914
 widgetCreatorHandler	example/app.h	/^  Node* widgetCreatorHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+widgetPositionChangedHandler	example/app.h	/^  Node* widgetPositionChangedHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 width	example/app.h	/^  uint16_t width;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
 width	lib/button.h	/^  uint16_t width;$/;"	m	struct:SDLButton	typeref:typename:uint16_t	access:public
 width	lib/label.h	/^  uint16_t width;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
 window	example/app.h	/^  SDL_Window* window;$/;"	m	struct:SDLApp	typeref:typename:SDL_Window *	access:public
+windowPositionChangeHandler	example/app.c	/^void windowPositionChangeHandler(){$/;"	f	typeref:typename:void	signature:()
 x	example/app.h	/^  int16_t x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
 x	lib/button.h	/^  int16_t x;$/;"	m	struct:SDLButton	typeref:typename:int16_t	access:public
 x	lib/label.h	/^  int16_t x;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public

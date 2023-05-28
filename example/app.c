@@ -9,6 +9,10 @@
 
 App* app;
 
+void windowPositionChangeHandler(){
+  SDL_Log("Window moved to (%d, %d)\n", app->x, app->y);
+}
+
 //------------- Initialization -------------//
 void initApp()
 {
@@ -35,6 +39,9 @@ void initApp()
   app->rightClickUpHandler = NULL;
   app->rightClickDownHandler = NULL;
   app->widgetCreatorHandler = NULL;
+  app->widgetPositionChangedHandler = NULL;
+
+  registerCallBackFunction(&app->widgetPositionChangedHandler, windowPositionChangeHandler);
 }
 
 int initFont()
@@ -60,12 +67,8 @@ int initFont()
   return EXIT_SUCCESS;
 }
 
-int initialize()
+int initSDL()
 {
-  initApp();
-  initLblAdd();
-  initBtnAdd();
-
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
       printf("SDL initialization failed. SDL Error: %s\n", SDL_GetError());
       return EXIT_FAILURE;
@@ -90,64 +93,96 @@ int initialize()
   return EXIT_SUCCESS;
 }
 
+int initialize()
+{
+  initApp();
+
+  if(EXIT_FAILURE == initSDL())
+  {
+    return EXIT_FAILURE;
+  }
+
+  // init your widgets here
+  initLblAdd();
+  initBtnAdd();
+
+  return EXIT_SUCCESS;
+}
+
 //------------- Rendering -------------//
 void render()
 {
   int quit = 0;
-  SDL_Event e;
+  SDL_Event event;
 
   while (!quit)
   {
-    while (SDL_PollEvent(&e))
+    while (SDL_PollEvent(&event))
     {
-      if (e.type == SDL_QUIT)
+      switch(event.type)
       {
-          quit = 1;
-      }
-      else if (e.type == SDL_MOUSEBUTTONDOWN)
-      {
-        app->mouse_x = e.button.x;
-        app->mouse_y = e.button.y;
+        case SDL_QUIT:
+          {
+            quit = 1;
+          } break;
+        case SDL_KEYDOWN:
+          {
+            if (event.key.keysym.sym == SDLK_F4 && (event.key.keysym.mod & KMOD_ALT))
+            {
+              quit = 1;
+            }
+            if (event.key.keysym.sym == SDLK_q)
+            {
+              quit = 1;
+            }
+          } break;
+        case SDL_MOUSEBUTTONDOWN:
+          {
+            app->mouse_x = event.button.x;
+            app->mouse_y = event.button.y;
 
-        if (e.button.button == SDL_BUTTON_LEFT)
-        {
-          callFunctions(app->leftClickDownHandler);
-        }
-        if (e.button.button == SDL_BUTTON_RIGHT)
-        {
-          callFunctions(app->rightClickDownHandler);
-        }
-      }
-      else if (e.type == SDL_KEYDOWN)
-      {
-        if (e.key.keysym.sym == SDLK_F4 && (e.key.keysym.mod & KMOD_ALT))
-        {
-          quit = 1;
-        }
-        if (e.key.keysym.sym == SDLK_q)
-        {
-          quit = 1;
-        }
-      }
-      else if (e.type == SDL_MOUSEBUTTONUP)
-      {
-        app->mouse_x = e.button.x;
-        app->mouse_y = e.button.y;
+            if (event.button.button == SDL_BUTTON_LEFT)
+            {
+              callFunctions(app->leftClickDownHandler);
+            }
+            if (event.button.button == SDL_BUTTON_RIGHT)
+            {
+              callFunctions(app->rightClickDownHandler);
+            }
+          } break;
+        case SDL_MOUSEBUTTONUP:
+          {
+            app->mouse_x = event.button.x;
+            app->mouse_y = event.button.y;
 
-        if (e.button.button == SDL_BUTTON_LEFT)
-        {
-          callFunctions(app->leftClickUpHandler);
-        }
-        if (e.button.button == SDL_BUTTON_RIGHT)
-        {
-          callFunctions(app->rightClickUpHandler);
-        }
-      }
-      else if (e.type == SDL_MOUSEMOTION)
-      {
-        app->mouse_x = e.motion.x;
-        app->mouse_y = e.motion.y;
-        callFunctions(app->hoverHandler);
+            if (event.button.button == SDL_BUTTON_LEFT)
+            {
+              callFunctions(app->leftClickUpHandler);
+            }
+            if (event.button.button == SDL_BUTTON_RIGHT)
+            {
+              callFunctions(app->rightClickUpHandler);
+            }
+          } break;
+        case SDL_MOUSEMOTION:
+          {
+            app->mouse_x = event.motion.x;
+            app->mouse_y = event.motion.y;
+            callFunctions(app->hoverHandler);
+          } break;
+        case SDL_MOUSEWHEEL:
+          break;
+        case SDL_WINDOWEVENT:
+          {
+            if (event.window.event == SDL_WINDOWEVENT_MOVED)
+            {
+              app->x = event.window.data1;
+              app->y = event.window.data2;
+              callFunctions(app->widgetPositionChangedHandler);
+            }
+          } break;
+        default:
+          break;
       }
     }
 
@@ -181,6 +216,7 @@ void cleanup()
   freeCallBackFunctionList(app->rightClickDownHandler);
   freeCallBackFunctionList(app->rightClickUpHandler);
   freeCallBackFunctionList(app->widgetCreatorHandler);
+  freeCallBackFunctionList(app->widgetPositionChangedHandler);
 
   free(app);
   app = NULL;

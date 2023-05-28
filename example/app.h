@@ -32,6 +32,7 @@ typedef struct SDLApp
   Node* rightClickDownHandler;
   Node* rightClickUpHandler;
   Node* widgetCreatorHandler;
+  Node* widgetPositionChangedHandler;
 }App;
 
 extern App* app;
