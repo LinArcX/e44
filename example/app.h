@@ -21,16 +21,21 @@ typedef struct SDLApp
   uint16_t width;
   uint16_t height;
 
-  int16_t mouse_x;
-  int16_t mouse_y;
+  int mouse_x;
+  int mouse_y;
 
   const char* backgroundColor;
 
   Node* hoverHandler;
+
   Node* leftClickDownHandler;
   Node* leftClickUpHandler;
   Node* rightClickDownHandler;
   Node* rightClickUpHandler;
+
+  Node* backSpaceHandler;
+  Node* textInputHandler;
+
   Node* widgetCreatorHandler;
   Node* widgetPositionChangedHandler;
 }App;

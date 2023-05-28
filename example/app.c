@@ -1,6 +1,7 @@
 #include "app.h"
 #include "lblAdd.h"
 #include "btnAdd.h"
+#include "txtInputTest.h"
 #include "../lib/util.h"
 
 #include <SDL2/SDL_render.h>
@@ -31,13 +32,18 @@ void initApp()
   app->mouse_y = 0;
   app->width = 800;
   app->height = 600;
-  app->backgroundColor = "#757575";
+  app->backgroundColor = "#262626";// "#757575";
 
   app->hoverHandler = NULL;
+
   app->leftClickUpHandler = NULL;
   app->leftClickDownHandler = NULL;
   app->rightClickUpHandler = NULL;
   app->rightClickDownHandler = NULL;
+
+  app->backSpaceHandler = NULL;
+  app->textInputHandler = NULL;
+
   app->widgetCreatorHandler = NULL;
   app->widgetPositionChangedHandler = NULL;
 
@@ -105,6 +111,7 @@ int initialize()
   // init your widgets here
   initLblAdd();
   initBtnAdd();
+  initTxtInputTest();
 
   return EXIT_SUCCESS;
 }
@@ -135,6 +142,19 @@ void render()
             {
               quit = 1;
             }
+            if (event.key.keysym.sym == SDLK_BACKSPACE)
+            {
+              int mouseX, mouseY;
+              SDL_GetMouseState(&app->mouse_x, &app->mouse_y);
+              callFunctions(app->backSpaceHandler);
+            }
+          } break;
+        case SDL_TEXTINPUT:
+          {
+            int mouseX, mouseY;
+            SDL_GetMouseState(&app->mouse_x, &app->mouse_y);
+            txtInputTest.newChar = *event.text.text;
+            callFunctions(app->textInputHandler);
           } break;
         case SDL_MOUSEBUTTONDOWN:
           {
@@ -211,13 +231,27 @@ void cleanup()
   SDL_Quit();
 
   freeCallBackFunctionList(app->hoverHandler);
+
   freeCallBackFunctionList(app->leftClickDownHandler);
   freeCallBackFunctionList(app->leftClickUpHandler);
   freeCallBackFunctionList(app->rightClickDownHandler);
   freeCallBackFunctionList(app->rightClickUpHandler);
+
+  freeCallBackFunctionList(app->backSpaceHandler);
+  freeCallBackFunctionList(app->textInputHandler);
+
   freeCallBackFunctionList(app->widgetCreatorHandler);
   freeCallBackFunctionList(app->widgetPositionChangedHandler);
 
   free(app);
   app = NULL;
 }
+
+            //int len = strlen(txtInputTest.newText);
+            //txtInputTest.newText = (char*)realloc(txtInputTest.newText, len + 1);
+            //if (txtInputTest.newText == NULL) {
+            //  SDL_Log("Failed to reallocate memory\n");
+            //}
+
+            //txtInputTest.newText[len] = *event.text.text;
+            ////txtInputTest.newText[len + 1] = '\0';

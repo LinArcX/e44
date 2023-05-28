@@ -34,7 +34,7 @@ int createLable(SDL_Renderer* renderer, TTF_Font* font, Label label) {
   SDL_RenderFillRect(renderer, &backgroundRect);
 
   // text rectangle
-  SDL_Rect textRect = { label.x + label.padding / 2, label.y + label.padding / 2, label.width, label.height };
+  SDL_Rect textRect = { label.x + label.padding / 2, label.y + label.padding / 2, surface->w, surface->h}; //label.width, label.height };
   SDL_RenderCopy(renderer, texture, NULL, &textRect);
 
   SDL_FreeSurface(surface);

@@ -1,5 +1,5 @@
-#ifndef _BUTTON_H
-#define _BUTTON_H
+#ifndef _TEXT_INPUT_H
+#define _TEXT_INPUT_H
 
 #include "util.h"
 
@@ -7,7 +7,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 
-typedef struct SDLButton
+typedef struct SDLTextInput
 {
   int16_t x;
   int16_t y;
@@ -17,7 +17,8 @@ typedef struct SDLButton
   uint8_t padding;
   const char* backgroundColor;
 
-  const char* text;
+  char* text;
+  char newChar;
   const char* textColor;
 
   bool isHovered;
@@ -29,19 +30,9 @@ typedef struct SDLButton
   BorderStyle borderStyle;
   uint8_t borderDefaultWidth;
   uint8_t borderDefaultHeight;
-} Button;
 
-int createButton(SDL_Renderer* renderer, TTF_Font* font, Button button);
+}TextInput;
 
-// handlers
-//void (*onHoverHandler)(void);
-//void (*onXChangeHandler)(int16_t);
-//void (*onYChangeHandler)(int16_t);
-//void (*onWidthChangeHandler)(uint16_t);
-//void (*onHeightChangeHandler)(uint16_t);
-
-//Node nodes[2];
-//int selectedNode = -1;  // -1 indicates no node is currently selected
-//void generateNodes();
+int textInputCreate(SDL_Renderer* renderer, TTF_Font* font, TextInput textInput);
 
 #endif

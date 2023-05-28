@@ -7,6 +7,16 @@ typedef struct Node {
     void (*function)();
     struct Node* next;
 } Node;
+
+typedef enum _BorderStyle
+{
+  LEFT = 0,
+  RIGHT,
+  TOP,
+  BOTTOM,
+  ALL
+} BorderStyle;
+
 void registerCallBackFunction(Node** head, void (*function)());
 void callFunctions(Node* head);
 void freeCallBackFunctionList(Node* head);

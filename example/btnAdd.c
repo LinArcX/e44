@@ -60,15 +60,18 @@ void initBtnAdd()
   btnAdd.width = 60;
   btnAdd.height = lblAdd.height;
   btnAdd.padding = 6;
-  btnAdd.borderDefaultWidth = 2;
-  btnAdd.borderDefaultHeight = 2;
-  btnAdd.isHovered = false;
-  btnAdd.borderStyle = ALL;
+  btnAdd.backgroundColor = "#1E1E1E";//"#262626", #212121
+
   btnAdd.text = "Search";
   btnAdd.textColor = "#FAFAFA"; //#DADADA,
-  btnAdd.backgroundColor = "#262626";
-  btnAdd.borderColor = "#616161";
-  btnAdd.backgroundColor = "#262626";
+
+  btnAdd.isHovered = false;
+  btnAdd.hoverText = "";
   btnAdd.hoverTextColor = "#212121";
   btnAdd.hoverBackgroundColor = "#A5D6A7"; //#FF7043, #FF8A65, #66BB6A, #1E1E1E
+
+  btnAdd.borderColor = "#616161";
+  btnAdd.borderStyle = ALL;
+  btnAdd.borderDefaultWidth = 2;
+  btnAdd.borderDefaultHeight = 2;
 }

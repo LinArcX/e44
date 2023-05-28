@@ -9,25 +9,26 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
-ALL	lib/button.h	/^  ALL$/;"	e	enum:_BorderStyle	access:public
+ALL	lib/util.h	/^  ALL$/;"	e	enum:_BorderStyle	access:public
 App	example/app.h	/^}App;$/;"	t	typeref:struct:SDLApp
-BOTTOM	lib/button.h	/^  BOTTOM,$/;"	e	enum:_BorderStyle	access:public
-BorderStyle	lib/button.h	/^} BorderStyle;$/;"	t	typeref:enum:_BorderStyle
+BOTTOM	lib/util.h	/^  BOTTOM,$/;"	e	enum:_BorderStyle	access:public
+BorderStyle	lib/util.h	/^} BorderStyle;$/;"	t	typeref:enum:_BorderStyle
 Button	lib/button.h	/^} Button;$/;"	t	typeref:struct:SDLButton
 CreateAllBorder	lib/button.c	/^void CreateAllBorder(SDL_Renderer* renderer, const Button* button)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const Button * button)
 CreateBottomBorder	lib/button.c	/^void CreateBottomBorder(SDL_Renderer* renderer, const Button* button)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const Button * button)
 CreateLeftBorder	lib/button.c	/^void CreateLeftBorder(SDL_Renderer* renderer, const Button* button)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const Button * button)
 CreateRightBorder	lib/button.c	/^void CreateRightBorder(SDL_Renderer* renderer, const Button* button)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const Button * button)
 CreateTopBorder	lib/button.c	/^void CreateTopBorder(SDL_Renderer* renderer, const Button* button)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const Button * button)
-LEFT	lib/button.h	/^  LEFT = 0,$/;"	e	enum:_BorderStyle	access:public
+LEFT	lib/util.h	/^  LEFT = 0,$/;"	e	enum:_BorderStyle	access:public
 Label	lib/label.h	/^} Label;$/;"	t	typeref:struct:SDLLabel
 Node	lib/util.h	/^typedef struct Node {$/;"	s
 Node	lib/util.h	/^} Node;$/;"	t	typeref:struct:Node
 Node::function	lib/util.h	/^    void (*function)();$/;"	m	struct:Node	typeref:typename:void (*)()	access:public
 Node::next	lib/util.h	/^    struct Node* next;$/;"	m	struct:Node	typeref:struct:Node *	access:public
 README.md	README.md	1;"	F	epoch:1684960758
-RIGHT	lib/button.h	/^  RIGHT,$/;"	e	enum:_BorderStyle	access:public
+RIGHT	lib/util.h	/^  RIGHT,$/;"	e	enum:_BorderStyle	access:public
 SDLApp	example/app.h	/^typedef struct SDLApp$/;"	s
+SDLApp::backSpaceHandler	example/app.h	/^  Node* backSpaceHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::backgroundColor	example/app.h	/^  const char* backgroundColor;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 SDLApp::font	example/app.h	/^  TTF_Font* font;$/;"	m	struct:SDLApp	typeref:typename:TTF_Font *	access:public
 SDLApp::fontName	example/app.h	/^  const char* fontName;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
@@ -36,11 +37,12 @@ SDLApp::height	example/app.h	/^  uint16_t height;$/;"	m	struct:SDLApp	typeref:ty
 SDLApp::hoverHandler	example/app.h	/^  Node* hoverHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::leftClickDownHandler	example/app.h	/^  Node* leftClickDownHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::leftClickUpHandler	example/app.h	/^  Node* leftClickUpHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
-SDLApp::mouse_x	example/app.h	/^  int16_t mouse_x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
-SDLApp::mouse_y	example/app.h	/^  int16_t mouse_y;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
+SDLApp::mouse_x	example/app.h	/^  int mouse_x;$/;"	m	struct:SDLApp	typeref:typename:int	access:public
+SDLApp::mouse_y	example/app.h	/^  int mouse_y;$/;"	m	struct:SDLApp	typeref:typename:int	access:public
 SDLApp::renderer	example/app.h	/^  SDL_Renderer* renderer;$/;"	m	struct:SDLApp	typeref:typename:SDL_Renderer *	access:public
 SDLApp::rightClickDownHandler	example/app.h	/^  Node* rightClickDownHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::rightClickUpHandler	example/app.h	/^  Node* rightClickUpHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+SDLApp::textInputHandler	example/app.h	/^  Node* textInputHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::widgetCreatorHandler	example/app.h	/^  Node* widgetCreatorHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::widgetPositionChangedHandler	example/app.h	/^  Node* widgetPositionChangedHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::width	example/app.h	/^  uint16_t width;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
@@ -75,13 +77,35 @@ SDLLabel::textColor	lib/label.h	/^  const char* textColor;$/;"	m	struct:SDLLabel
 SDLLabel::width	lib/label.h	/^  uint16_t width;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
 SDLLabel::x	lib/label.h	/^  int16_t x;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public
 SDLLabel::y	lib/label.h	/^  int16_t y;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public
-TOP	lib/button.h	/^  TOP,$/;"	e	enum:_BorderStyle	access:public
+SDLTextInput	lib/textInput.h	/^typedef struct SDLTextInput$/;"	s
+SDLTextInput::backgroundColor	lib/textInput.h	/^  const char* backgroundColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
+SDLTextInput::borderColor	lib/textInput.h	/^  const char* borderColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
+SDLTextInput::borderDefaultHeight	lib/textInput.h	/^  uint8_t borderDefaultHeight;$/;"	m	struct:SDLTextInput	typeref:typename:uint8_t	access:public
+SDLTextInput::borderDefaultWidth	lib/textInput.h	/^  uint8_t borderDefaultWidth;$/;"	m	struct:SDLTextInput	typeref:typename:uint8_t	access:public
+SDLTextInput::borderStyle	lib/textInput.h	/^  BorderStyle borderStyle;$/;"	m	struct:SDLTextInput	typeref:typename:BorderStyle	access:public
+SDLTextInput::height	lib/textInput.h	/^  uint16_t height;$/;"	m	struct:SDLTextInput	typeref:typename:uint16_t	access:public
+SDLTextInput::hoverBackgroundColor	lib/textInput.h	/^  const char* hoverBackgroundColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
+SDLTextInput::hoverText	lib/textInput.h	/^  const char* hoverText;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
+SDLTextInput::hoverTextColor	lib/textInput.h	/^  const char* hoverTextColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
+SDLTextInput::isHovered	lib/textInput.h	/^  bool isHovered;$/;"	m	struct:SDLTextInput	typeref:typename:bool	access:public
+SDLTextInput::newChar	lib/textInput.h	/^  char newChar;$/;"	m	struct:SDLTextInput	typeref:typename:char	access:public
+SDLTextInput::padding	lib/textInput.h	/^  uint8_t padding;$/;"	m	struct:SDLTextInput	typeref:typename:uint8_t	access:public
+SDLTextInput::radius	lib/textInput.h	/^  int64_t radius;$/;"	m	struct:SDLTextInput	typeref:typename:int64_t	access:public
+SDLTextInput::text	lib/textInput.h	/^  char* text;$/;"	m	struct:SDLTextInput	typeref:typename:char *	access:public
+SDLTextInput::textColor	lib/textInput.h	/^  const char* textColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
+SDLTextInput::width	lib/textInput.h	/^  uint16_t width;$/;"	m	struct:SDLTextInput	typeref:typename:uint16_t	access:public
+SDLTextInput::x	lib/textInput.h	/^  int16_t x;$/;"	m	struct:SDLTextInput	typeref:typename:int16_t	access:public
+SDLTextInput::y	lib/textInput.h	/^  int16_t y;$/;"	m	struct:SDLTextInput	typeref:typename:int16_t	access:public
+TOP	lib/util.h	/^  TOP,$/;"	e	enum:_BorderStyle	access:public
+TextInput	lib/textInput.h	/^}TextInput;$/;"	t	typeref:struct:SDLTextInput
 _APP_H	example/app.h	/^#define _APP_H$/;"	d
 _BUTTON_H	lib/button.h	/^#define _BUTTON_H$/;"	d
-_BorderStyle	lib/button.h	/^typedef enum _BorderStyle$/;"	g
+_BorderStyle	lib/util.h	/^typedef enum _BorderStyle$/;"	g
 _EXAMPLE_BTNADD_H	example/btnAdd.h	/^#define _EXAMPLE_BTNADD_H$/;"	d
 _EXAMPLE_LBLADD_H	example/lblAdd.h	/^#define _EXAMPLE_LBLADD_H$/;"	d
+_EXAMPLE_TXT_INPUT_TEST_H	example/txtInputTest.h	/^#define _EXAMPLE_TXT_INPUT_TEST_H$/;"	d
 _LABEL_H	lib/label.h	/^#define _LABEL_H$/;"	d
+_TEXT_INPUT_H	lib/textInput.h	/^#define _TEXT_INPUT_H$/;"	d
 _TYPES_HPP	lib/types.h	/^#define _TYPES_HPP$/;"	d
 _UTIL_H	lib/util.h	/^#define _UTIL_H$/;"	d
 _build	project.sh	/^_build() {$/;"	f
@@ -95,30 +119,46 @@ _generateTags	project.sh	/^_generateTags() {$/;"	f
 _run	project.sh	/^_run() {$/;"	f
 _valgrind	project.sh	/^_valgrind() {$/;"	f
 app	example/app.c	/^App* app;$/;"	v	typeref:typename:App *
-app.c	example/app.c	1;"	F	epoch:1685296019
-app.h	example/app.h	1;"	F	epoch:1685282328
+app.c	example/app.c	1;"	F	epoch:1685314107
+app.h	example/app.h	1;"	F	epoch:1685301386
+backSpaceHandler	example/app.h	/^  Node* backSpaceHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 backgroundColor	example/app.h	/^  const char* backgroundColor;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 backgroundColor	lib/button.h	/^  const char* backgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 backgroundColor	lib/label.h	/^  const char* backgroundColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+backgroundColor	lib/textInput.h	/^  const char* backgroundColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
 borderColor	lib/button.c	/^SDL_Color borderColor = {0};$/;"	v	typeref:typename:SDL_Color
 borderColor	lib/button.h	/^  const char* borderColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
+borderColor	lib/textInput.h	/^  const char* borderColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
 borderDefaultHeight	lib/button.h	/^  uint8_t borderDefaultHeight;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
+borderDefaultHeight	lib/textInput.h	/^  uint8_t borderDefaultHeight;$/;"	m	struct:SDLTextInput	typeref:typename:uint8_t	access:public
 borderDefaultWidth	lib/button.h	/^  uint8_t borderDefaultWidth;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
+borderDefaultWidth	lib/textInput.h	/^  uint8_t borderDefaultWidth;$/;"	m	struct:SDLTextInput	typeref:typename:uint8_t	access:public
 borderStyle	lib/button.h	/^  BorderStyle borderStyle;$/;"	m	struct:SDLButton	typeref:typename:BorderStyle	access:public
+borderStyle	lib/textInput.h	/^  BorderStyle borderStyle;$/;"	m	struct:SDLTextInput	typeref:typename:BorderStyle	access:public
 btnAdd	example/btnAdd.c	/^Button btnAdd;$/;"	v	typeref:typename:Button
-btnAdd.c	example/btnAdd.c	1;"	F	epoch:1685281489
+btnAdd.c	example/btnAdd.c	1;"	F	epoch:1685303078
 btnAdd.h	example/btnAdd.h	1;"	F	epoch:1685279986
 btnAddHoverHandler	example/btnAdd.c	/^void btnAddHoverHandler()$/;"	f	typeref:typename:void	signature:()
 btnAddLeftClickHandler	example/btnAdd.c	/^void btnAddLeftClickHandler()$/;"	f	typeref:typename:void	signature:()
 btnAddRightClickHandler	example/btnAdd.c	/^void btnAddRightClickHandler()$/;"	f	typeref:typename:void	signature:()
 button.c	lib/button.c	1;"	F	epoch:1685275714
-button.h	lib/button.h	1;"	F	epoch:1685274522
+button.h	lib/button.h	1;"	F	epoch:1685302902
 callFunctions	lib/util.c	/^void callFunctions(Node* head)$/;"	f	typeref:typename:void	signature:(Node * head)
+checkBox.c	lib/checkBox.c	1;"	F	epoch:1685296258
+checkBox.h	lib/checkBox.h	1;"	F	epoch:1685296253
 cleanup	example/app.c	/^void cleanup()$/;"	f	typeref:typename:void	signature:()
+colorPicker.c	lib/colorPicker.c	1;"	F	epoch:1685296482
+colorPicker.h	lib/colorPicker.h	1;"	F	epoch:1685296478
+comboBox.c	lib/comboBox.c	1;"	F	epoch:1685296209
+comboBox.h	lib/comboBox.h	1;"	F	epoch:1685296205
 createBtnAddWidget	example/btnAdd.c	/^void createBtnAddWidget()$/;"	f	typeref:typename:void	signature:()
 createButton	lib/button.c	/^int createButton(SDL_Renderer* renderer, TTF_Font* font, Button button) {$/;"	f	typeref:typename:int	signature:(SDL_Renderer * renderer,TTF_Font * font,Button button)
 createLable	lib/label.c	/^int createLable(SDL_Renderer* renderer, TTF_Font* font, Label label) {$/;"	f	typeref:typename:int	signature:(SDL_Renderer * renderer,TTF_Font * font,Label label)
 createLblAddWidget	example/lblAdd.c	/^void createLblAddWidget()$/;"	f	typeref:typename:void	signature:()
+datePicker.c	lib/datePicker.c	1;"	F	epoch:1685296543
+datePicker.h	lib/datePicker.h	1;"	F	epoch:1685296540
+dialogBox.c	lib/dialogBox.c	1;"	F	epoch:1685296300
+dialogBox.h	lib/dialogBox.h	1;"	F	epoch:1685296297
 font	example/app.h	/^  TTF_Font* font;$/;"	m	struct:SDLApp	typeref:typename:TTF_Font *	access:public
 fontName	example/app.h	/^  const char* fontName;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 fontSize	example/app.h	/^  uint8_t fontSize;$/;"	m	struct:SDLApp	typeref:typename:uint8_t	access:public
@@ -127,23 +167,29 @@ function	lib/util.h	/^    void (*function)();$/;"	m	struct:Node	typeref:typename
 height	example/app.h	/^  uint16_t height;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
 height	lib/button.h	/^  uint16_t height;$/;"	m	struct:SDLButton	typeref:typename:uint16_t	access:public
 height	lib/label.h	/^  uint16_t height;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
+height	lib/textInput.h	/^  uint16_t height;$/;"	m	struct:SDLTextInput	typeref:typename:uint16_t	access:public
 hexToRGBA	lib/util.c	/^void hexToRGBA(const char* hexColor, uint8_t* r, uint8_t* g, uint8_t* b, uint8_t* a)$/;"	f	typeref:typename:void	signature:(const char * hexColor,uint8_t * r,uint8_t * g,uint8_t * b,uint8_t * a)
 hoverBackgroundColor	lib/button.h	/^  const char* hoverBackgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
+hoverBackgroundColor	lib/textInput.h	/^  const char* hoverBackgroundColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
 hoverHandler	example/app.h	/^  Node* hoverHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 hoverText	lib/button.h	/^  const char* hoverText;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
+hoverText	lib/textInput.h	/^  const char* hoverText;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
 hoverTextColor	lib/button.h	/^  const char* hoverTextColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
+hoverTextColor	lib/textInput.h	/^  const char* hoverTextColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
 initApp	example/app.c	/^void initApp()$/;"	f	typeref:typename:void	signature:()
 initBtnAdd	example/btnAdd.c	/^void initBtnAdd()$/;"	f	typeref:typename:void	signature:()
 initFont	example/app.c	/^int initFont()$/;"	f	typeref:typename:int	signature:()
 initLblAdd	example/lblAdd.c	/^void initLblAdd()$/;"	f	typeref:typename:void	signature:()
 initSDL	example/app.c	/^int initSDL()$/;"	f	typeref:typename:int	signature:()
+initTxtInputTest	example/txtInputTest.c	/^void initTxtInputTest()$/;"	f	typeref:typename:void	signature:()
 initialize	example/app.c	/^int initialize()$/;"	f	typeref:typename:int	signature:()
 int16_t	lib/types.h	/^typedef short int16_t;$/;"	t	typeref:typename:short
 int32_t	lib/types.h	/^typedef int int32_t;$/;"	t	typeref:typename:int
 int64_t	lib/types.h	/^typedef long long int int64_t;$/;"	t	typeref:typename:long long int
 int8_t	lib/types.h	/^typedef char int8_t;$/;"	t	typeref:typename:char
 isHovered	lib/button.h	/^  bool isHovered;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
-label.c	lib/label.c	1;"	F	epoch:1685281097
+isHovered	lib/textInput.h	/^  bool isHovered;$/;"	m	struct:SDLTextInput	typeref:typename:bool	access:public
+label.c	lib/label.c	1;"	F	epoch:1685312913
 label.h	lib/label.h	1;"	F	epoch:1685274665
 lblAdd	example/lblAdd.c	/^Label lblAdd;$/;"	v	typeref:typename:Label
 lblAdd.c	example/lblAdd.c	1;"	F	epoch:1685281470
@@ -154,43 +200,81 @@ leftClickDownHandler	example/app.h	/^  Node* leftClickDownHandler;$/;"	m	struct:
 leftClickUpHandler	example/app.h	/^  Node* leftClickUpHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 main	example/main.c	/^int main()$/;"	f	typeref:typename:int	signature:()
 main.c	example/main.c	1;"	F	epoch:1685276071
-mouse_x	example/app.h	/^  int16_t mouse_x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
-mouse_y	example/app.h	/^  int16_t mouse_y;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
+menu.c	lib/menu.c	1;"	F	epoch:1685296589
+menu.h	lib/menu.h	1;"	F	epoch:1685296588
+mouse_x	example/app.h	/^  int mouse_x;$/;"	m	struct:SDLApp	typeref:typename:int	access:public
+mouse_y	example/app.h	/^  int mouse_y;$/;"	m	struct:SDLApp	typeref:typename:int	access:public
+newChar	lib/textInput.h	/^  char newChar;$/;"	m	struct:SDLTextInput	typeref:typename:char	access:public
 next	lib/util.h	/^    struct Node* next;$/;"	m	struct:Node	typeref:struct:Node *	access:public
 p	project.sh	/^p() {$/;"	f
 padding	lib/button.h	/^  uint8_t padding;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
 padding	lib/label.h	/^  uint8_t padding;$/;"	m	struct:SDLLabel	typeref:typename:uint8_t	access:public
+padding	lib/textInput.h	/^  uint8_t padding;$/;"	m	struct:SDLTextInput	typeref:typename:uint8_t	access:public
 popup.c	lib/popup.c	1;"	F	epoch:1684961791
 popup.h	lib/popup.h	1;"	F	epoch:1684961794
 project.sh	project.sh	1;"	F	epoch:1685275248
+radioButton.c	lib/radioButton.c	1;"	F	epoch:1685296415
+radioButton.h	lib/radioButton.h	1;"	F	epoch:1685296409
 radius	lib/button.h	/^  int64_t radius;$/;"	m	struct:SDLButton	typeref:typename:int64_t	access:public
 radius	lib/label.h	/^  int64_t radius;$/;"	m	struct:SDLLabel	typeref:typename:int64_t	access:public
+radius	lib/textInput.h	/^  int64_t radius;$/;"	m	struct:SDLTextInput	typeref:typename:int64_t	access:public
 registerCallBackFunction	lib/util.c	/^void registerCallBackFunction(Node** head, void (*function)())$/;"	f	typeref:typename:void	signature:(Node ** head,void (* function)())
 render	example/app.c	/^void render()$/;"	f	typeref:typename:void	signature:()
 renderer	example/app.h	/^  SDL_Renderer* renderer;$/;"	m	struct:SDLApp	typeref:typename:SDL_Renderer *	access:public
 rightClickDownHandler	example/app.h	/^  Node* rightClickDownHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 rightClickUpHandler	example/app.h	/^  Node* rightClickUpHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+scrollBar.c	lib/scrollBar.c	1;"	F	epoch:1685296440
+scrollBar.h	lib/scrollBar.h	1;"	F	epoch:1685296445
+searchBox.c	lib/searchBox.c	1;"	F	epoch:1685296338
+searchBox.h	lib/searchBox.h	1;"	F	epoch:1685296334
+slider.c	lib/slider.c	1;"	F	epoch:1685296323
+slider.h	lib/slider.h	1;"	F	epoch:1685296321
 text	lib/button.h	/^  const char* text;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 text	lib/label.h	/^  const char* text;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+text	lib/textInput.h	/^  char* text;$/;"	m	struct:SDLTextInput	typeref:typename:char *	access:public
 textColor	lib/button.h	/^  const char* textColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 textColor	lib/label.h	/^  const char* textColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+textColor	lib/textInput.h	/^  const char* textColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
+textInput.c	lib/textInput.c	1;"	F	epoch:1685312895
+textInput.h	lib/textInput.h	1;"	F	epoch:1685313459
+textInputBorderColor	lib/textInput.c	/^SDL_Color textInputBorderColor = {0};$/;"	v	typeref:typename:SDL_Color
+textInputCreate	lib/textInput.c	/^int textInputCreate(SDL_Renderer* renderer, TTF_Font* font, TextInput textInput) {$/;"	f	typeref:typename:int	signature:(SDL_Renderer * renderer,TTF_Font * font,TextInput textInput)
+textInputCreateAllBorder	lib/textInput.c	/^void textInputCreateAllBorder(SDL_Renderer* renderer, const TextInput* textInput)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const TextInput * textInput)
+textInputCreateBottomBorder	lib/textInput.c	/^void textInputCreateBottomBorder(SDL_Renderer* renderer, const TextInput* textInput)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const TextInput * textInput)
+textInputCreateLeftBorder	lib/textInput.c	/^void textInputCreateLeftBorder(SDL_Renderer* renderer, const TextInput* textInput)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const TextInput * textInput)
+textInputCreateRightBorder	lib/textInput.c	/^void textInputCreateRightBorder(SDL_Renderer* renderer, const TextInput* textInput)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const TextInput * textInput)
+textInputCreateTestWidget	example/txtInputTest.c	/^void textInputCreateTestWidget()$/;"	f	typeref:typename:void	signature:()
+textInputCreateTopBorder	lib/textInput.c	/^void textInputCreateTopBorder(SDL_Renderer* renderer, const TextInput* textInput)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const TextInput * textInput)
+textInputHandler	example/app.h	/^  Node* textInputHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+toggleSwitch.c	lib/toggleSwitch.c	1;"	F	epoch:1685296368
+toggleSwitch.h	lib/toggleSwitch.h	1;"	F	epoch:1685296374
+tooltip.c	lib/tooltip.c	1;"	F	epoch:1685297266
+tooltip.h	lib/tooltip.h	1;"	F	epoch:1685297263
+txtInputTest	example/txtInputTest.c	/^TextInput txtInputTest;$/;"	v	typeref:typename:TextInput
+txtInputTest.c	example/txtInputTest.c	1;"	F	epoch:1685314157
+txtInputTest.h	example/txtInputTest.h	1;"	F	epoch:1685301854
+txtInputTestBackSpaceHandler	example/txtInputTest.c	/^void txtInputTestBackSpaceHandler()$/;"	f	typeref:typename:void	signature:()
+txtInputTestTextInputHandler	example/txtInputTest.c	/^void txtInputTestTextInputHandler()$/;"	f	typeref:typename:void	signature:()
 types.h	lib/types.h	1;"	F	epoch:1685260107
 uint16_t	lib/types.h	/^typedef unsigned short uint16_t;$/;"	t	typeref:typename:unsigned short
 uint32_t	lib/types.h	/^typedef unsigned int uint32_t;$/;"	t	typeref:typename:unsigned int
 uint64_t	lib/types.h	/^typedef unsigned long long int uint64_t;$/;"	t	typeref:typename:unsigned long long int
 uint8_t	lib/types.h	/^typedef unsigned char uint8_t;$/;"	t	typeref:typename:unsigned char
 util.c	lib/util.c	1;"	F	epoch:1685279851
-util.h	lib/util.h	1;"	F	epoch:1685279914
+util.h	lib/util.h	1;"	F	epoch:1685297587
 widgetCreatorHandler	example/app.h	/^  Node* widgetCreatorHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 widgetPositionChangedHandler	example/app.h	/^  Node* widgetPositionChangedHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 width	example/app.h	/^  uint16_t width;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
 width	lib/button.h	/^  uint16_t width;$/;"	m	struct:SDLButton	typeref:typename:uint16_t	access:public
 width	lib/label.h	/^  uint16_t width;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
+width	lib/textInput.h	/^  uint16_t width;$/;"	m	struct:SDLTextInput	typeref:typename:uint16_t	access:public
 window	example/app.h	/^  SDL_Window* window;$/;"	m	struct:SDLApp	typeref:typename:SDL_Window *	access:public
 windowPositionChangeHandler	example/app.c	/^void windowPositionChangeHandler(){$/;"	f	typeref:typename:void	signature:()
 x	example/app.h	/^  int16_t x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
 x	lib/button.h	/^  int16_t x;$/;"	m	struct:SDLButton	typeref:typename:int16_t	access:public
 x	lib/label.h	/^  int16_t x;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public
+x	lib/textInput.h	/^  int16_t x;$/;"	m	struct:SDLTextInput	typeref:typename:int16_t	access:public
 y	example/app.h	/^  int16_t y;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
 y	lib/button.h	/^  int16_t y;$/;"	m	struct:SDLButton	typeref:typename:int16_t	access:public
 y	lib/label.h	/^  int16_t y;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public
+y	lib/textInput.h	/^  int16_t y;$/;"	m	struct:SDLTextInput	typeref:typename:int16_t	access:public
