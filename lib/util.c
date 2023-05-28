@@ -26,3 +26,45 @@ void hexToRGBA(const char* hexColor, uint8_t* r, uint8_t* g, uint8_t* b, uint8_t
     *a = 255;
   }
 }
+
+void registerCallBackFunction(Node** head, void (*function)())
+{
+  Node* newNode = (Node*)malloc(sizeof(Node));
+  newNode->function = function;
+  newNode->next = NULL;
+
+  if (*head == NULL)
+  {
+    *head = newNode;
+  }
+  else
+  {
+    Node* current = *head;
+    while (current->next != NULL)
+    {
+      current = current->next;
+    }
+    current->next = newNode;
+  }
+}
+
+void callFunctions(Node* head)
+{
+  Node* current = head;
+  while (current != NULL)
+  {
+    current->function();
+    current = current->next;
+  }
+}
+
+void freeCallBackFunctionList(Node* head)
+{
+  Node* current = head;
+  while (current != NULL)
+  {
+    Node* temp = current;
+    current = current->next;
+    free(temp);
+  }
+}

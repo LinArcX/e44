@@ -5,6 +5,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
+#include "../lib/util.h"
+
 typedef struct SDLApp
 {
   SDL_Window* window;
@@ -18,7 +20,18 @@ typedef struct SDLApp
   int16_t y;
   uint16_t width;
   uint16_t height;
+
+  int16_t mouse_x;
+  int16_t mouse_y;
+
   const char* backgroundColor;
+
+  Node* hoverHandler;
+  Node* leftClickDownHandler;
+  Node* leftClickUpHandler;
+  Node* rightClickDownHandler;
+  Node* rightClickUpHandler;
+  Node* widgetCreatorHandler;
 }App;
 
 extern App* app;

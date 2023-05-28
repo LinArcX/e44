@@ -9,32 +9,6 @@
 
 App* app;
 
-//------------- Event Handling -------------//
-void mouseHoverEventUpHandler(int x, int y)
-{
-  btnAddHoverHandler(x, y);
-}
-
-void mouseLeftClickEventDownHandler(int x, int y)
-{
-  lblAddLeftClickHandler(x, y);
-  btnAddLeftClickHandler(x, y);
-}
-
-void mouseRightClickEventDownHandler(int x, int y)
-{
-  lblAddRightButtonHandler(x, y);
-  btnAddRightButtonHandler(x, y);
-}
-
-void mouseLeftClickEventUpHandler(int buttonX, int buttonY)
-{
-}
-
-void mouseRightClickEventUpHandler(int buttonX, int buttonY)
-{
-}
-
 //------------- Initialization -------------//
 void initApp()
 {
@@ -49,9 +23,18 @@ void initApp()
 
   app->x = 0;
   app->y = 0;
+  app->mouse_x = 0;
+  app->mouse_y = 0;
   app->width = 800;
   app->height = 600;
   app->backgroundColor = "#757575";
+
+  app->hoverHandler = NULL;
+  app->leftClickUpHandler = NULL;
+  app->leftClickDownHandler = NULL;
+  app->rightClickUpHandler = NULL;
+  app->rightClickDownHandler = NULL;
+  app->widgetCreatorHandler = NULL;
 }
 
 int initFont()
@@ -108,12 +91,6 @@ int initialize()
 }
 
 //------------- Rendering -------------//
-void createScene()
-{
-  createLable(app->renderer, app->font, lblAdd);
-  createButton(app->renderer, app->font, btnAdd);
-}
-
 void render()
 {
   int quit = 0;
@@ -129,36 +106,48 @@ void render()
       }
       else if (e.type == SDL_MOUSEBUTTONDOWN)
       {
+        app->mouse_x = e.button.x;
+        app->mouse_y = e.button.y;
+
         if (e.button.button == SDL_BUTTON_LEFT)
         {
-          mouseLeftClickEventDownHandler(e.button.x, e.button.y);
+          callFunctions(app->leftClickDownHandler);
         }
         if (e.button.button == SDL_BUTTON_RIGHT)
         {
-          mouseRightClickEventDownHandler(e.button.x, e.button.y);
+          callFunctions(app->rightClickDownHandler);
         }
       }
       else if (e.type == SDL_KEYDOWN)
       {
         if (e.key.keysym.sym == SDLK_F4 && (e.key.keysym.mod & KMOD_ALT))
         {
-          quit = true;
+          quit = 1;
+        }
+        if (e.key.keysym.sym == SDLK_q)
+        {
+          quit = 1;
         }
       }
       else if (e.type == SDL_MOUSEBUTTONUP)
       {
+        app->mouse_x = e.button.x;
+        app->mouse_y = e.button.y;
+
         if (e.button.button == SDL_BUTTON_LEFT)
         {
-          mouseLeftClickEventUpHandler(e.button.x, e.button.y);
+          callFunctions(app->leftClickUpHandler);
         }
         if (e.button.button == SDL_BUTTON_RIGHT)
         {
-          mouseRightClickEventUpHandler(e.button.x, e.button.y);
+          callFunctions(app->rightClickUpHandler);
         }
       }
       else if (e.type == SDL_MOUSEMOTION)
       {
-        mouseHoverEventUpHandler(e.motion.x, e.motion.y);
+        app->mouse_x = e.motion.x;
+        app->mouse_y = e.motion.y;
+        callFunctions(app->hoverHandler);
       }
     }
 
@@ -168,7 +157,7 @@ void render()
     SDL_SetRenderDrawColor(app->renderer, red, green, blue, alpha);
     SDL_RenderClear(app->renderer);
 
-    createScene();
+    callFunctions(app->widgetCreatorHandler);
 
     SDL_RenderPresent(app->renderer);
     // we need this delay, unless we'll face a high cpu usage. a number between 60 and 100 is ok.
@@ -185,6 +174,13 @@ void cleanup()
   SDL_DestroyRenderer(app->renderer);
   SDL_DestroyWindow(app->window);
   SDL_Quit();
+
+  freeCallBackFunctionList(app->hoverHandler);
+  freeCallBackFunctionList(app->leftClickDownHandler);
+  freeCallBackFunctionList(app->leftClickUpHandler);
+  freeCallBackFunctionList(app->rightClickDownHandler);
+  freeCallBackFunctionList(app->rightClickUpHandler);
+  freeCallBackFunctionList(app->widgetCreatorHandler);
 
   free(app);
   app = NULL;

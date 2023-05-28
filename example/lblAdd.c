@@ -1,10 +1,44 @@
 #include "app.h"
 #include "lblAdd.h"
+#include "../lib/util.h"
 
 Label lblAdd;
 
+void lblAddLeftClickDownHandler()
+{
+  if (app->mouse_x >= lblAdd.x
+      && app->mouse_x <= lblAdd.x + lblAdd.width + lblAdd.padding
+      && app->mouse_y >= lblAdd.y
+      && app->mouse_y <= lblAdd.y + lblAdd.height + lblAdd.padding)
+  {
+    SDL_Log("[lblAdd] leftButton Clicked!");
+  }
+}
+
+void lblAddRightClickDownHandler()
+{
+  if (app->mouse_x >= lblAdd.x
+      && app->mouse_x <= lblAdd.x + lblAdd.width + lblAdd.padding
+      && app->mouse_y >= lblAdd.y
+      && app->mouse_y <= lblAdd.y + lblAdd.height + lblAdd.padding)
+  {
+    SDL_Log("[lblAdd] rightButton Clicked!");
+  }
+}
+
+void createLblAddWidget()
+{
+  createLable(app->renderer, app->font, lblAdd);
+}
+
 void initLblAdd()
 {
+  // setup callback functions
+  registerCallBackFunction(&app->leftClickDownHandler, lblAddLeftClickDownHandler);
+  registerCallBackFunction(&app->rightClickDownHandler, lblAddRightClickDownHandler);
+  registerCallBackFunction(&app->widgetCreatorHandler, createLblAddWidget);
+
+  // initialize
   lblAdd.x = 20;
   lblAdd.y = 20;
   lblAdd.radius = 1;
@@ -14,26 +48,4 @@ void initLblAdd()
   lblAdd.text = "Name: ";
   lblAdd.textColor = "#FAFAFA";
   lblAdd.backgroundColor = app->backgroundColor;
-}
-
-void lblAddLeftClickHandler(int x, int y)
-{
-  if (x >= lblAdd.x
-      && x <= lblAdd.x + lblAdd.width + lblAdd.padding
-      && y >= lblAdd.y
-      && y <= lblAdd.y + lblAdd.height + lblAdd.padding)
-  {
-    SDL_Log("[lblAdd] leftButton Clicked!");
-  }
-}
-
-void lblAddRightButtonHandler(int x, int y)
-{
-  if (x >= lblAdd.x
-      && x <= lblAdd.x + lblAdd.width + lblAdd.padding
-      && y >= lblAdd.y
-      && y <= lblAdd.y + lblAdd.height + lblAdd.padding)
-  {
-    SDL_Log("[lblAdd] rightButton Clicked!");
-  }
 }

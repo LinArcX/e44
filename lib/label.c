@@ -12,9 +12,7 @@ int createLable(SDL_Renderer* renderer, TTF_Font* font, Label label) {
   hexToRGBA(label.backgroundColor, &red, &green, &blue, &alpha);
   SDL_Color backgroundColor = { red, green, blue, alpha };
 
-  // Create a surface from the rendered text
   SDL_Surface* surface = TTF_RenderText_Blended(font, label.text, textColor);
-
   if (!surface)
   {
     SDL_Log("Failed to create surface: %s", TTF_GetError());
@@ -35,27 +33,25 @@ int createLable(SDL_Renderer* renderer, TTF_Font* font, Label label) {
   SDL_SetRenderDrawColor(renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
   SDL_RenderFillRect(renderer, &backgroundRect);
 
-  //// Render rounded corners
-  //SDL_SetRenderDrawColor(app->renderer, 0, 0, 0, 0); // Set color to transparent
-  //SDL_SetRenderDrawBlendMode(app->renderer, SDL_BLENDMODE_BLEND);
-  //SDL_Rect corners[4] = {
-  //  { label.x, label.y, label.radius, label.radius },
-  //  { label.x + label.width - label.radius, label.y, label.radius, label.radius },
-  //  { label.x, label.y + label.height - label.radius, label.radius, label.radius },
-  //  { label.x + label.width - label.radius, label.y + label.height - label.radius, label.radius, label.radius }
+  // text rectangle
+  SDL_Rect textRect = { label.x + label.padding / 2, label.y + label.padding / 2, label.width, label.height };
+  SDL_RenderCopy(renderer, texture, NULL, &textRect);
+
+  SDL_FreeSurface(surface);
+  SDL_DestroyTexture(texture);
+  return EXIT_SUCCESS;
+}
+
+//// Render rounded corners
+//SDL_SetRenderDrawColor(app->renderer, 0, 0, 0, 0); // Set color to transparent
+//SDL_SetRenderDrawBlendMode(app->renderer, SDL_BLENDMODE_BLEND);
+//SDL_Rect corners[4] = {
+//  { label.x, label.y, label.radius, label.radius },
+//  { label.x + label.width - label.radius, label.y, label.radius, label.radius },
+//  { label.x, label.y + label.height - label.radius, label.radius, label.radius },
+//  { label.x + label.width - label.radius, label.y + label.height - label.radius, label.radius, label.radius }
   //};
   //for (int i = 0; i < 4; i++)
   //{
   //  SDL_RenderFillRect(app->renderer, &corners[i]);
   //}
-
-  // Create a destination rectangle for rendering the texture
-  SDL_Rect textRect = { label.x + label.padding / 2, label.y + label.padding / 2, label.width, label.height };
-  // Render the texture on the screen
-  SDL_RenderCopy(renderer, texture, NULL, &textRect);
-
-  SDL_FreeSurface(surface);
-  SDL_DestroyTexture(texture);
-
-  return EXIT_SUCCESS;
-}

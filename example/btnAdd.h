@@ -6,8 +6,4 @@
 extern Button btnAdd;
 
 void initBtnAdd();
-
-void btnAddLeftClickHandler(int x, int y);
-void btnAddRightButtonHandler(int x, int y);
-void btnAddHoverHandler(int x, int y);
 #endif

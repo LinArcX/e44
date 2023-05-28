@@ -21,6 +21,10 @@ CreateRightBorder	lib/button.c	/^void CreateRightBorder(SDL_Renderer* renderer, 
 CreateTopBorder	lib/button.c	/^void CreateTopBorder(SDL_Renderer* renderer, const Button* button)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const Button * button)
 LEFT	lib/button.h	/^  LEFT = 0,$/;"	e	enum:_BorderStyle	access:public
 Label	lib/label.h	/^} Label;$/;"	t	typeref:struct:SDLLabel
+Node	lib/util.h	/^typedef struct Node {$/;"	s
+Node	lib/util.h	/^} Node;$/;"	t	typeref:struct:Node
+Node::function	lib/util.h	/^    void (*function)();$/;"	m	struct:Node	typeref:typename:void (*)()	access:public
+Node::next	lib/util.h	/^    struct Node* next;$/;"	m	struct:Node	typeref:struct:Node *	access:public
 README.md	README.md	1;"	F	epoch:1684960758
 RIGHT	lib/button.h	/^  RIGHT,$/;"	e	enum:_BorderStyle	access:public
 SDLApp	example/app.h	/^typedef struct SDLApp$/;"	s
@@ -29,7 +33,15 @@ SDLApp::font	example/app.h	/^  TTF_Font* font;$/;"	m	struct:SDLApp	typeref:typen
 SDLApp::fontName	example/app.h	/^  const char* fontName;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 SDLApp::fontSize	example/app.h	/^  uint8_t fontSize;$/;"	m	struct:SDLApp	typeref:typename:uint8_t	access:public
 SDLApp::height	example/app.h	/^  uint16_t height;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
+SDLApp::hoverHandler	example/app.h	/^  Node* hoverHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+SDLApp::leftClickDownHandler	example/app.h	/^  Node* leftClickDownHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+SDLApp::leftClickUpHandler	example/app.h	/^  Node* leftClickUpHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+SDLApp::mouse_x	example/app.h	/^  int16_t mouse_x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
+SDLApp::mouse_y	example/app.h	/^  int16_t mouse_y;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
 SDLApp::renderer	example/app.h	/^  SDL_Renderer* renderer;$/;"	m	struct:SDLApp	typeref:typename:SDL_Renderer *	access:public
+SDLApp::rightClickDownHandler	example/app.h	/^  Node* rightClickDownHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+SDLApp::rightClickUpHandler	example/app.h	/^  Node* rightClickUpHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+SDLApp::widgetCreatorHandler	example/app.h	/^  Node* widgetCreatorHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 SDLApp::width	example/app.h	/^  uint16_t width;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
 SDLApp::window	example/app.h	/^  SDL_Window* window;$/;"	m	struct:SDLApp	typeref:typename:SDL_Window *	access:public
 SDLApp::x	example/app.h	/^  int16_t x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
@@ -82,8 +94,8 @@ _generateTags	project.sh	/^_generateTags() {$/;"	f
 _run	project.sh	/^_run() {$/;"	f
 _valgrind	project.sh	/^_valgrind() {$/;"	f
 app	example/app.c	/^App* app;$/;"	v	typeref:typename:App *
-app.c	example/app.c	1;"	F	epoch:1685276027
-app.h	example/app.h	1;"	F	epoch:1685276068
+app.c	example/app.c	1;"	F	epoch:1685281240
+app.h	example/app.h	1;"	F	epoch:1685280921
 backgroundColor	example/app.h	/^  const char* backgroundColor;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 backgroundColor	lib/button.h	/^  const char* backgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 backgroundColor	lib/label.h	/^  const char* backgroundColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
@@ -93,25 +105,30 @@ borderDefaultHeight	lib/button.h	/^  uint8_t borderDefaultHeight;$/;"	m	struct:S
 borderDefaultWidth	lib/button.h	/^  uint8_t borderDefaultWidth;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
 borderStyle	lib/button.h	/^  BorderStyle borderStyle;$/;"	m	struct:SDLButton	typeref:typename:BorderStyle	access:public
 btnAdd	example/btnAdd.c	/^Button btnAdd;$/;"	v	typeref:typename:Button
-btnAdd.c	example/btnAdd.c	1;"	F	epoch:1685275774
-btnAdd.h	example/btnAdd.h	1;"	F	epoch:1685274808
-btnAddHoverHandler	example/btnAdd.c	/^void btnAddHoverHandler(int x, int y)$/;"	f	typeref:typename:void	signature:(int x,int y)
-btnAddLeftClickHandler	example/btnAdd.c	/^void btnAddLeftClickHandler(int x, int y)$/;"	f	typeref:typename:void	signature:(int x,int y)
-btnAddRightButtonHandler	example/btnAdd.c	/^void btnAddRightButtonHandler(int x, int y)$/;"	f	typeref:typename:void	signature:(int x,int y)
+btnAdd.c	example/btnAdd.c	1;"	F	epoch:1685281489
+btnAdd.h	example/btnAdd.h	1;"	F	epoch:1685279986
+btnAddHoverHandler	example/btnAdd.c	/^void btnAddHoverHandler()$/;"	f	typeref:typename:void	signature:()
+btnAddLeftClickHandler	example/btnAdd.c	/^void btnAddLeftClickHandler()$/;"	f	typeref:typename:void	signature:()
+btnAddRightClickHandler	example/btnAdd.c	/^void btnAddRightClickHandler()$/;"	f	typeref:typename:void	signature:()
 button.c	lib/button.c	1;"	F	epoch:1685275714
 button.h	lib/button.h	1;"	F	epoch:1685274522
+callFunctions	lib/util.c	/^void callFunctions(Node* head)$/;"	f	typeref:typename:void	signature:(Node * head)
 cleanup	example/app.c	/^void cleanup()$/;"	f	typeref:typename:void	signature:()
+createBtnAddWidget	example/btnAdd.c	/^void createBtnAddWidget()$/;"	f	typeref:typename:void	signature:()
 createButton	lib/button.c	/^int createButton(SDL_Renderer* renderer, TTF_Font* font, Button button) {$/;"	f	typeref:typename:int	signature:(SDL_Renderer * renderer,TTF_Font * font,Button button)
 createLable	lib/label.c	/^int createLable(SDL_Renderer* renderer, TTF_Font* font, Label label) {$/;"	f	typeref:typename:int	signature:(SDL_Renderer * renderer,TTF_Font * font,Label label)
-createScene	example/app.c	/^void createScene()$/;"	f	typeref:typename:void	signature:()
+createLblAddWidget	example/lblAdd.c	/^void createLblAddWidget()$/;"	f	typeref:typename:void	signature:()
 font	example/app.h	/^  TTF_Font* font;$/;"	m	struct:SDLApp	typeref:typename:TTF_Font *	access:public
 fontName	example/app.h	/^  const char* fontName;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 fontSize	example/app.h	/^  uint8_t fontSize;$/;"	m	struct:SDLApp	typeref:typename:uint8_t	access:public
+freeCallBackFunctionList	lib/util.c	/^void freeCallBackFunctionList(Node* head)$/;"	f	typeref:typename:void	signature:(Node * head)
+function	lib/util.h	/^    void (*function)();$/;"	m	struct:Node	typeref:typename:void (*)()	access:public
 height	example/app.h	/^  uint16_t height;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
 height	lib/button.h	/^  uint16_t height;$/;"	m	struct:SDLButton	typeref:typename:uint16_t	access:public
 height	lib/label.h	/^  uint16_t height;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
 hexToRGBA	lib/util.c	/^void hexToRGBA(const char* hexColor, uint8_t* r, uint8_t* g, uint8_t* b, uint8_t* a)$/;"	f	typeref:typename:void	signature:(const char * hexColor,uint8_t * r,uint8_t * g,uint8_t * b,uint8_t * a)
 hoverBackgroundColor	lib/button.h	/^  const char* hoverBackgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
+hoverHandler	example/app.h	/^  Node* hoverHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 hoverText	lib/button.h	/^  const char* hoverText;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 hoverTextColor	lib/button.h	/^  const char* hoverTextColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 initApp	example/app.c	/^void initApp()$/;"	f	typeref:typename:void	signature:()
@@ -124,20 +141,20 @@ int32_t	lib/types.h	/^typedef int int32_t;$/;"	t	typeref:typename:int
 int64_t	lib/types.h	/^typedef long long int int64_t;$/;"	t	typeref:typename:long long int
 int8_t	lib/types.h	/^typedef char int8_t;$/;"	t	typeref:typename:char
 isHovered	lib/button.h	/^  bool isHovered;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
-label.c	lib/label.c	1;"	F	epoch:1685274667
+label.c	lib/label.c	1;"	F	epoch:1685281097
 label.h	lib/label.h	1;"	F	epoch:1685274665
 lblAdd	example/lblAdd.c	/^Label lblAdd;$/;"	v	typeref:typename:Label
-lblAdd.c	example/lblAdd.c	1;"	F	epoch:1685275812
-lblAdd.h	example/lblAdd.h	1;"	F	epoch:1685274839
-lblAddLeftClickHandler	example/lblAdd.c	/^void lblAddLeftClickHandler(int x, int y)$/;"	f	typeref:typename:void	signature:(int x,int y)
-lblAddRightButtonHandler	example/lblAdd.c	/^void lblAddRightButtonHandler(int x, int y)$/;"	f	typeref:typename:void	signature:(int x,int y)
+lblAdd.c	example/lblAdd.c	1;"	F	epoch:1685281470
+lblAdd.h	example/lblAdd.h	1;"	F	epoch:1685281207
+lblAddLeftClickDownHandler	example/lblAdd.c	/^void lblAddLeftClickDownHandler()$/;"	f	typeref:typename:void	signature:()
+lblAddRightClickDownHandler	example/lblAdd.c	/^void lblAddRightClickDownHandler()$/;"	f	typeref:typename:void	signature:()
+leftClickDownHandler	example/app.h	/^  Node* leftClickDownHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+leftClickUpHandler	example/app.h	/^  Node* leftClickUpHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 main	example/main.c	/^int main()$/;"	f	typeref:typename:int	signature:()
 main.c	example/main.c	1;"	F	epoch:1685276071
-mouseHoverEventUpHandler	example/app.c	/^void mouseHoverEventUpHandler(int x, int y)$/;"	f	typeref:typename:void	signature:(int x,int y)
-mouseLeftClickEventDownHandler	example/app.c	/^void mouseLeftClickEventDownHandler(int x, int y)$/;"	f	typeref:typename:void	signature:(int x,int y)
-mouseLeftClickEventUpHandler	example/app.c	/^void mouseLeftClickEventUpHandler(int buttonX, int buttonY)$/;"	f	typeref:typename:void	signature:(int buttonX,int buttonY)
-mouseRightClickEventDownHandler	example/app.c	/^void mouseRightClickEventDownHandler(int x, int y)$/;"	f	typeref:typename:void	signature:(int x,int y)
-mouseRightClickEventUpHandler	example/app.c	/^void mouseRightClickEventUpHandler(int buttonX, int buttonY)$/;"	f	typeref:typename:void	signature:(int buttonX,int buttonY)
+mouse_x	example/app.h	/^  int16_t mouse_x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
+mouse_y	example/app.h	/^  int16_t mouse_y;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
+next	lib/util.h	/^    struct Node* next;$/;"	m	struct:Node	typeref:struct:Node *	access:public
 p	project.sh	/^p() {$/;"	f
 padding	lib/button.h	/^  uint8_t padding;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
 padding	lib/label.h	/^  uint8_t padding;$/;"	m	struct:SDLLabel	typeref:typename:uint8_t	access:public
@@ -146,8 +163,11 @@ popup.h	lib/popup.h	1;"	F	epoch:1684961794
 project.sh	project.sh	1;"	F	epoch:1685275248
 radius	lib/button.h	/^  int64_t radius;$/;"	m	struct:SDLButton	typeref:typename:int64_t	access:public
 radius	lib/label.h	/^  int64_t radius;$/;"	m	struct:SDLLabel	typeref:typename:int64_t	access:public
+registerCallBackFunction	lib/util.c	/^void registerCallBackFunction(Node** head, void (*function)())$/;"	f	typeref:typename:void	signature:(Node ** head,void (* function)())
 render	example/app.c	/^void render()$/;"	f	typeref:typename:void	signature:()
 renderer	example/app.h	/^  SDL_Renderer* renderer;$/;"	m	struct:SDLApp	typeref:typename:SDL_Renderer *	access:public
+rightClickDownHandler	example/app.h	/^  Node* rightClickDownHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
+rightClickUpHandler	example/app.h	/^  Node* rightClickUpHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 text	lib/button.h	/^  const char* text;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 text	lib/label.h	/^  const char* text;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
 textColor	lib/button.h	/^  const char* textColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
@@ -157,8 +177,9 @@ uint16_t	lib/types.h	/^typedef unsigned short uint16_t;$/;"	t	typeref:typename:u
 uint32_t	lib/types.h	/^typedef unsigned int uint32_t;$/;"	t	typeref:typename:unsigned int
 uint64_t	lib/types.h	/^typedef unsigned long long int uint64_t;$/;"	t	typeref:typename:unsigned long long int
 uint8_t	lib/types.h	/^typedef unsigned char uint8_t;$/;"	t	typeref:typename:unsigned char
-util.c	lib/util.c	1;"	F	epoch:1685204545
-util.h	lib/util.h	1;"	F	epoch:1685204769
+util.c	lib/util.c	1;"	F	epoch:1685279851
+util.h	lib/util.h	1;"	F	epoch:1685279914
+widgetCreatorHandler	example/app.h	/^  Node* widgetCreatorHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 width	example/app.h	/^  uint16_t width;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
 width	lib/button.h	/^  uint16_t width;$/;"	m	struct:SDLButton	typeref:typename:uint16_t	access:public
 width	lib/label.h	/^  uint16_t width;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
