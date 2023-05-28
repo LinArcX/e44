@@ -8,13 +8,18 @@ TextInput txtInputTest;
 
 void txtInputTestTextInputHandler()
 {
+  //SDL_Log("before reallocation");
+
   txtInputTest.text = (char*)realloc(txtInputTest.text, strlen(txtInputTest.text) + 1);
   if (NULL == txtInputTest.text)
   {
     SDL_Log("Failed to reallocate memory\n");
   }
+  //SDL_Log("txtInputTest.newChar: %c", txtInputTest.newChar);
+  //SDL_Log("txtInputTest.text: %s", txtInputTest.text);
+
   txtInputTest.text[strlen(txtInputTest.text)] = txtInputTest.newChar;
-  txtInputTest.text[strlen(txtInputTest.text) + 1] = '\0';
+  //txtInputTest.text[strlen(txtInputTest.text) + 1] = '\0';
 }
 
 void txtInputTestBackSpaceHandler()
@@ -42,7 +47,7 @@ void initTxtInputTest()
   txtInputTest.backgroundColor = "#262626";
 
   txtInputTest.text = malloc(1);
-  memset(txtInputTest.text, ' ', 1);
+  memset(txtInputTest.text, '\0', 1);
   //txtInputTest.text = " ";
   txtInputTest.textColor = "#FAFAFA"; //#DADADA,
                                       //

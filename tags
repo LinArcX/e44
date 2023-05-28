@@ -119,7 +119,7 @@ _generateTags	project.sh	/^_generateTags() {$/;"	f
 _run	project.sh	/^_run() {$/;"	f
 _valgrind	project.sh	/^_valgrind() {$/;"	f
 app	example/app.c	/^App* app;$/;"	v	typeref:typename:App *
-app.c	example/app.c	1;"	F	epoch:1685314107
+app.c	example/app.c	1;"	F	epoch:1685314798
 app.h	example/app.h	1;"	F	epoch:1685301386
 backSpaceHandler	example/app.h	/^  Node* backSpaceHandler;$/;"	m	struct:SDLApp	typeref:typename:Node *	access:public
 backgroundColor	example/app.h	/^  const char* backgroundColor;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
@@ -236,7 +236,7 @@ textColor	lib/button.h	/^  const char* textColor;$/;"	m	struct:SDLButton	typeref
 textColor	lib/label.h	/^  const char* textColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
 textColor	lib/textInput.h	/^  const char* textColor;$/;"	m	struct:SDLTextInput	typeref:typename:const char *	access:public
 textInput.c	lib/textInput.c	1;"	F	epoch:1685312895
-textInput.h	lib/textInput.h	1;"	F	epoch:1685313459
+textInput.h	lib/textInput.h	1;"	F	epoch:1685314305
 textInputBorderColor	lib/textInput.c	/^SDL_Color textInputBorderColor = {0};$/;"	v	typeref:typename:SDL_Color
 textInputCreate	lib/textInput.c	/^int textInputCreate(SDL_Renderer* renderer, TTF_Font* font, TextInput textInput) {$/;"	f	typeref:typename:int	signature:(SDL_Renderer * renderer,TTF_Font * font,TextInput textInput)
 textInputCreateAllBorder	lib/textInput.c	/^void textInputCreateAllBorder(SDL_Renderer* renderer, const TextInput* textInput)$/;"	f	typeref:typename:void	signature:(SDL_Renderer * renderer,const TextInput * textInput)
@@ -251,7 +251,7 @@ toggleSwitch.h	lib/toggleSwitch.h	1;"	F	epoch:1685296374
 tooltip.c	lib/tooltip.c	1;"	F	epoch:1685297266
 tooltip.h	lib/tooltip.h	1;"	F	epoch:1685297263
 txtInputTest	example/txtInputTest.c	/^TextInput txtInputTest;$/;"	v	typeref:typename:TextInput
-txtInputTest.c	example/txtInputTest.c	1;"	F	epoch:1685314157
+txtInputTest.c	example/txtInputTest.c	1;"	F	epoch:1685315169
 txtInputTest.h	example/txtInputTest.h	1;"	F	epoch:1685301854
 txtInputTestBackSpaceHandler	example/txtInputTest.c	/^void txtInputTestBackSpaceHandler()$/;"	f	typeref:typename:void	signature:()
 txtInputTestTextInputHandler	example/txtInputTest.c	/^void txtInputTestTextInputHandler()$/;"	f	typeref:typename:void	signature:()

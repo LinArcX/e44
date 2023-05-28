@@ -138,10 +138,6 @@ void render()
             {
               quit = 1;
             }
-            if (event.key.keysym.sym == SDLK_q)
-            {
-              quit = 1;
-            }
             if (event.key.keysym.sym == SDLK_BACKSPACE)
             {
               int mouseX, mouseY;
