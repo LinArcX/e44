@@ -10,10 +10,12 @@ typedef struct SDLApp
   TTF_Font* font;
   SDL_Window* window;
   SDL_Renderer* renderer;
+
   int16_t x;
   int16_t y;
   uint16_t width;
   uint16_t height;
+  const char* backgroundColor;
 }App;
 
 extern App* app;

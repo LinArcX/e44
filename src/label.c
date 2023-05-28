@@ -33,7 +33,7 @@ int createLable(Label label) {
   }
 
   // Create a destination rectangle for background of label
-  SDL_Rect backgroundRect = { label.x, label.y, label.width + 4, label.height + 4 };
+  SDL_Rect backgroundRect = { label.x, label.y, label.width + label.padding, label.height + label.padding };
   SDL_SetRenderDrawColor(app->renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
   SDL_RenderFillRect(app->renderer, &backgroundRect);
 
@@ -52,7 +52,7 @@ int createLable(Label label) {
   }
 
   // Create a destination rectangle for rendering the texture
-  SDL_Rect textRect = { label.x + 2, label.y + 2, label.width, label.height };
+  SDL_Rect textRect = { label.x + label.padding / 2, label.y + label.padding / 2, label.width, label.height };
   // Render the texture on the screen
   SDL_RenderCopy(app->renderer, texture, NULL, &textRect);
 

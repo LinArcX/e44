@@ -14,6 +14,7 @@ Button	src/button.h	/^} Button;$/;"	t	typeref:struct:SDLButton
 Label	src/label.h	/^} Label;$/;"	t	typeref:struct:SDLLabel
 README.md	README.md	1;"	F	epoch:1684960758
 SDLApp	src/app.h	/^typedef struct SDLApp$/;"	s
+SDLApp::backgroundColor	src/app.h	/^  const char* backgroundColor;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 SDLApp::font	src/app.h	/^  TTF_Font* font;$/;"	m	struct:SDLApp	typeref:typename:TTF_Font *	access:public
 SDLApp::height	src/app.h	/^  uint16_t height;$/;"	m	struct:SDLApp	typeref:typename:uint16_t	access:public
 SDLApp::renderer	src/app.h	/^  SDL_Renderer* renderer;$/;"	m	struct:SDLApp	typeref:typename:SDL_Renderer *	access:public
@@ -23,9 +24,14 @@ SDLApp::x	src/app.h	/^  int16_t x;$/;"	m	struct:SDLApp	typeref:typename:int16_t	
 SDLApp::y	src/app.h	/^  int16_t y;$/;"	m	struct:SDLApp	typeref:typename:int16_t	access:public
 SDLButton	src/button.h	/^typedef struct SDLButton$/;"	s
 SDLButton::backgroundColor	src/button.h	/^  const char* backgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
+SDLButton::borderColor	src/button.h	/^  const char* borderColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
+SDLButton::borderDefaultHeight	src/button.h	/^  uint8_t borderDefaultHeight;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
+SDLButton::borderDefaultWidth	src/button.h	/^  uint8_t borderDefaultWidth;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
 SDLButton::height	src/button.h	/^  uint16_t height;$/;"	m	struct:SDLButton	typeref:typename:uint16_t	access:public
 SDLButton::hoverBackgroundColor	src/button.h	/^  const char* hoverBackgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 SDLButton::hoverTextColor	src/button.h	/^  const char* hoverTextColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
+SDLButton::isHovered	src/button.h	/^  bool isHovered;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
+SDLButton::padding	src/button.h	/^  uint8_t padding;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
 SDLButton::radius	src/button.h	/^  int64_t radius;$/;"	m	struct:SDLButton	typeref:typename:int64_t	access:public
 SDLButton::text	src/button.h	/^  const char* text;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 SDLButton::textColor	src/button.h	/^  const char* textColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
@@ -35,6 +41,7 @@ SDLButton::y	src/button.h	/^  int16_t y;$/;"	m	struct:SDLButton	typeref:typename
 SDLLabel	src/label.h	/^typedef struct SDLLabel$/;"	s
 SDLLabel::backgroundColor	src/label.h	/^  const char* backgroundColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
 SDLLabel::height	src/label.h	/^  uint16_t height;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
+SDLLabel::padding	src/label.h	/^  uint8_t padding;$/;"	m	struct:SDLLabel	typeref:typename:uint8_t	access:public
 SDLLabel::radius	src/label.h	/^  int64_t radius;$/;"	m	struct:SDLLabel	typeref:typename:int64_t	access:public
 SDLLabel::text	src/label.h	/^  const char* text;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
 SDLLabel::textColor	src/label.h	/^  const char* textColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
@@ -57,16 +64,20 @@ _generateTags	project.sh	/^_generateTags() {$/;"	f
 _run	project.sh	/^_run() {$/;"	f
 _valgrind	project.sh	/^_valgrind() {$/;"	f
 app	src/app.c	/^App* app;$/;"	v	typeref:typename:App *
-app.c	src/app.c	1;"	F	epoch:1685229677
-app.h	src/app.h	1;"	F	epoch:1685204938
+app.c	src/app.c	1;"	F	epoch:1685266376
+app.h	src/app.h	1;"	F	epoch:1685265539
+backgroundColor	src/app.h	/^  const char* backgroundColor;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 backgroundColor	src/button.h	/^  const char* backgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 backgroundColor	src/label.h	/^  const char* backgroundColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+borderColor	src/button.h	/^  const char* borderColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
+borderDefaultHeight	src/button.h	/^  uint8_t borderDefaultHeight;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
+borderDefaultWidth	src/button.h	/^  uint8_t borderDefaultWidth;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
 btnAdd	src/app.c	/^Button btnAdd;$/;"	v	typeref:typename:Button
 btnAddHoverHandler	src/app.c	/^void btnAddHoverHandler()$/;"	f	typeref:typename:void	signature:()
 btnAddLeftButtonHandler	src/app.c	/^void btnAddLeftButtonHandler()$/;"	f	typeref:typename:void	signature:()
 btnAddRightButtonHandler	src/app.c	/^void btnAddRightButtonHandler()$/;"	f	typeref:typename:void	signature:()
-button.c	src/button.c	1;"	F	epoch:1685229080
-button.h	src/button.h	1;"	F	epoch:1685229481
+button.c	src/button.c	1;"	F	epoch:1685266396
+button.h	src/button.h	1;"	F	epoch:1685263654
 cleanup	src/app.c	/^void cleanup()$/;"	f	typeref:typename:void	signature:()
 createButton	src/button.c	/^int createButton(Button button) {$/;"	f	typeref:typename:int	signature:(Button button)
 createLable	src/label.c	/^int createLable(Label label) {$/;"	f	typeref:typename:int	signature:(Label label)
@@ -84,8 +95,9 @@ int16_t	src/types.h	/^typedef short int16_t;$/;"	t	typeref:typename:short
 int32_t	src/types.h	/^typedef int int32_t;$/;"	t	typeref:typename:int
 int64_t	src/types.h	/^typedef long long int int64_t;$/;"	t	typeref:typename:long long int
 int8_t	src/types.h	/^typedef char int8_t;$/;"	t	typeref:typename:char
-label.c	src/label.c	1;"	F	epoch:1685221261
-label.h	src/label.h	1;"	F	epoch:1685228021
+isHovered	src/button.h	/^  bool isHovered;$/;"	m	struct:SDLButton	typeref:typename:bool	access:public
+label.c	src/label.c	1;"	F	epoch:1685261281
+label.h	src/label.h	1;"	F	epoch:1685261246
 lblAdd	src/app.c	/^Label lblAdd;$/;"	v	typeref:typename:Label
 lblAddLeftButtonHandler	src/app.c	/^void lblAddLeftButtonHandler()$/;"	f	typeref:typename:void	signature:()
 lblAddRightButtonHandler	src/app.c	/^void lblAddRightButtonHandler()$/;"	f	typeref:typename:void	signature:()
@@ -97,9 +109,11 @@ mouseLeftClickEventUpHandler	src/app.c	/^void mouseLeftClickEventUpHandler(int b
 mouseRightClickEventDownHandler	src/app.c	/^void mouseRightClickEventDownHandler(int x, int y)$/;"	f	typeref:typename:void	signature:(int x,int y)
 mouseRightClickEventUpHandler	src/app.c	/^void mouseRightClickEventUpHandler(int buttonX, int buttonY)$/;"	f	typeref:typename:void	signature:(int buttonX,int buttonY)
 p	project.sh	/^p() {$/;"	f
+padding	src/button.h	/^  uint8_t padding;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
+padding	src/label.h	/^  uint8_t padding;$/;"	m	struct:SDLLabel	typeref:typename:uint8_t	access:public
 popup.c	src/popup.c	1;"	F	epoch:1684961791
 popup.h	src/popup.h	1;"	F	epoch:1684961794
-project.sh	project.sh	1;"	F	epoch:1685221950
+project.sh	project.sh	1;"	F	epoch:1685264134
 radius	src/button.h	/^  int64_t radius;$/;"	m	struct:SDLButton	typeref:typename:int64_t	access:public
 radius	src/label.h	/^  int64_t radius;$/;"	m	struct:SDLLabel	typeref:typename:int64_t	access:public
 renderer	src/app.h	/^  SDL_Renderer* renderer;$/;"	m	struct:SDLApp	typeref:typename:SDL_Renderer *	access:public
@@ -107,7 +121,7 @@ text	src/button.h	/^  const char* text;$/;"	m	struct:SDLButton	typeref:typename:
 text	src/label.h	/^  const char* text;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
 textColor	src/button.h	/^  const char* textColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 textColor	src/label.h	/^  const char* textColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
-types.h	src/types.h	1;"	F	epoch:1685199485
+types.h	src/types.h	1;"	F	epoch:1685260107
 uint16_t	src/types.h	/^typedef unsigned short uint16_t;$/;"	t	typeref:typename:unsigned short
 uint32_t	src/types.h	/^typedef unsigned int uint32_t;$/;"	t	typeref:typename:unsigned int
 uint64_t	src/types.h	/^typedef unsigned long long int uint64_t;$/;"	t	typeref:typename:unsigned long long int

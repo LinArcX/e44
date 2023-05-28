@@ -7,7 +7,8 @@
 # tools:
 # static code analyzer:
 #   - c: splint
-# memory debugger: valgrind system call tracer: strace
+# memory debugger: valgrind
+# system call tracer: strace
 # display info about .obj files: objdump
 #
 # opening/editing files: noevim

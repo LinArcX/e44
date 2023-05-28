@@ -10,6 +10,7 @@ typedef struct SDLLabel
   int64_t radius;
   uint16_t width;
   uint16_t height;
+  uint8_t padding;
   const char* text;
   const char* textColor;
   const char* backgroundColor;

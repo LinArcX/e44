@@ -1,6 +1,9 @@
 #include "app.h"
 #include "label.h"
 #include "button.h"
+#include "util.h"
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_video.h>
 
 App* app;
 Label lblAdd;
@@ -8,28 +11,7 @@ Button btnAdd;
 
 void createScene()
 {
-  // lblAdd
-  lblAdd.x = 20;
-  lblAdd.y = 20;
-  lblAdd.radius = 50;
-  lblAdd.width = 45;
-  lblAdd.height = 20;
-  lblAdd.text = "Add: ";
-  lblAdd.textColor = "#DADADA";
-  lblAdd.backgroundColor = "#262626";
   createLable(lblAdd);
-
-  // btnAdd
-  btnAdd.x = lblAdd.x + lblAdd.width + 10;
-  btnAdd.y = lblAdd.y;
-  btnAdd.radius = 50;
-  btnAdd.width = 60;
-  btnAdd.height = lblAdd.height;
-  btnAdd.text = "Click!";
-  btnAdd.textColor = "#DADADA";
-  btnAdd.backgroundColor = "#262626";
-  btnAdd.hoverTextColor = "#212121";
-  btnAdd.hoverBackgroundColor = "#FF7043";
   createButton(btnAdd);
 }
 
@@ -55,30 +37,33 @@ void btnAddRightButtonHandler()
 
 void btnAddHoverHandler()
 {
-  SDL_Log("btnAdd Hover Event Activated!");
-  btnAdd.textColor = btnAdd.hoverTextColor;
-  btnAdd.backgroundColor = btnAdd.hoverBackgroundColor;
+  //SDL_Log("btnAdd Hover Event Activated!");
+  //btnAdd.textColor = btnAdd.hoverTextColor;
+  //btnAdd.backgroundColor = btnAdd.hoverBackgroundColor;
 }
 
 void mouseHoverEventUpHandler(int x, int y)
 {
   // btnAdd
-  if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + 4 && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + 4)
+  if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + btnAdd.padding && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + btnAdd.padding)
   {
-    btnAddHoverHandler();
+    btnAdd.isHovered = true;
+    return;
   }
+
+  btnAdd.isHovered = false;
 }
 
 void mouseLeftClickEventDownHandler(int x, int y)
 {
   // lblAdd
-  if (x >= lblAdd.x && x <= lblAdd.x + lblAdd.width + 4 && y >= lblAdd.y && y <= lblAdd.y + lblAdd.height + 4)
+  if (x >= lblAdd.x && x <= lblAdd.x + lblAdd.width + lblAdd.padding && y >= lblAdd.y && y <= lblAdd.y + lblAdd.height + lblAdd.padding)
   {
     lblAddLeftButtonHandler();
   }
 
   // btnAdd
-  if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + 4 && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + 4)
+  if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + btnAdd.padding && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + btnAdd.padding)
   {
     btnAddLeftButtonHandler();
   }
@@ -87,13 +72,13 @@ void mouseLeftClickEventDownHandler(int x, int y)
 void mouseRightClickEventDownHandler(int x, int y)
 {
   // lblAdd
-  if (x >= lblAdd.x && x <= lblAdd.x + lblAdd.width + 4 && y >= lblAdd.y && y <= lblAdd.y + lblAdd.height + 4)
+  if (x >= lblAdd.x && x <= lblAdd.x + lblAdd.width + lblAdd.padding && y >= lblAdd.y && y <= lblAdd.y + lblAdd.height + lblAdd.padding)
   {
     lblAddRightButtonHandler();
   }
 
   // lblAdd
-  if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + 4 && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + 4)
+  if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + btnAdd.padding && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + btnAdd.padding)
   {
     btnAddRightButtonHandler();
   }
@@ -117,19 +102,47 @@ int initialize()
   app->y = 0;
   app->width = 800;
   app->height = 600;
+  app->backgroundColor = "#757575";
+
+  lblAdd.x = 20;
+  lblAdd.y = 20;
+  lblAdd.radius = 1;
+  lblAdd.width = 45;
+  lblAdd.height = 20;
+  lblAdd.padding = 4;
+  lblAdd.text = "Name: ";
+  lblAdd.textColor = "#DADADA";
+  lblAdd.backgroundColor = app->backgroundColor; //#1E1E1E
+
+  btnAdd.x = lblAdd.x + lblAdd.width;
+  btnAdd.y = lblAdd.y;
+  btnAdd.radius = 50;
+  btnAdd.width = 60;
+  btnAdd.height = lblAdd.height;
+  btnAdd.padding = 6;
+  btnAdd.borderDefaultWidth = 2;
+  btnAdd.borderDefaultHeight = 2;
+  btnAdd.isHovered = false;
+  btnAdd.text = "Search";
+  btnAdd.textColor = "#DADADA";
+  btnAdd.backgroundColor = "#262626";
+  btnAdd.borderColor = "#FF7043";
+  btnAdd.backgroundColor = "#262626";
+  btnAdd.hoverTextColor = "#212121";
+  btnAdd.hoverBackgroundColor = "#66BB6A"; //#FF7043, #FF8A65
 
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
       printf("SDL initialization failed. SDL Error: %s\n", SDL_GetError());
       return 0;
   }
 
-  app->window = SDL_CreateWindow("Galaxy of Nodes", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, app->width, app->height, SDL_WINDOW_SHOWN);
+  app->window= SDL_CreateWindow("Galaxy of Nodes", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, app->width, app->height, SDL_WINDOW_SHOWN);
   if (app->window == NULL) {
       printf("Window creation failed. SDL Error: %s\n", SDL_GetError());
       return EXIT_FAILURE;
   }
 
-  app->renderer = SDL_CreateRenderer(app->window, -1, SDL_RENDERER_ACCELERATED);
+  app->renderer= SDL_CreateRenderer(app->window, -1, SDL_RENDERER_ACCELERATED);
   if (app->renderer == NULL) {
       printf("Renderer creation failed. SDL Error: %s\n", SDL_GetError());
       return EXIT_FAILURE;
@@ -163,7 +176,7 @@ void handleEvents()
 
   while (!quit)
   {
-    while (SDL_PollEvent(&e) != 0)
+    while (SDL_PollEvent(&e))
     {
       if (e.type == SDL_QUIT)
       {
@@ -178,6 +191,13 @@ void handleEvents()
         if (e.button.button == SDL_BUTTON_RIGHT)
         {
           mouseRightClickEventDownHandler(e.button.x, e.button.y);
+        }
+      }
+      else if (e.type == SDL_KEYDOWN)
+      {
+        if (e.key.keysym.sym == SDLK_F4 && (e.key.keysym.mod & KMOD_ALT))
+        {
+          quit = true;
         }
       }
       else if (e.type == SDL_MOUSEBUTTONUP)
@@ -196,12 +216,19 @@ void handleEvents()
         mouseHoverEventUpHandler(e.motion.x, e.motion.y);
       }
     }
-    SDL_SetRenderDrawColor(app->renderer, 30, 30, 30, 1);
+
+    uint8_t red, green, blue, alpha;
+    hexToRGBA(app->backgroundColor, &red, &green, &blue, &alpha);
+
+    SDL_SetRenderDrawColor(app->renderer, red, green, blue, alpha);
     SDL_RenderClear(app->renderer);
 
     createScene();
 
     SDL_RenderPresent(app->renderer);
+
+    // we need this delay, unless we'll face a high cpu usage. a number between 60 and 100 is ok.
+    SDL_Delay(60);
   }
 }
 

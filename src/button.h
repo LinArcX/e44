@@ -2,6 +2,7 @@
 #define _BUTTON_H
 
 #include <SDL2/SDL.h>
+#include <stdbool.h>
 
 typedef struct SDLButton
 {
@@ -11,9 +12,14 @@ typedef struct SDLButton
   int64_t radius;
   uint16_t width;
   uint16_t height;
+  uint8_t padding;
+  uint8_t borderDefaultWidth;
+  uint8_t borderDefaultHeight;
+  bool isHovered;
   const char* text;
   const char* textColor;
   const char* backgroundColor;
+  const char* borderColor;
   const char* hoverTextColor;
   const char* hoverBackgroundColor;
 

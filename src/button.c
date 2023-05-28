@@ -13,6 +13,24 @@ int createButton(Button button) {
   hexToRGBA(button.backgroundColor, &red, &green, &blue, &alpha);
   SDL_Color backgroundColor = { red, green, blue, alpha };
 
+  hexToRGBA(button.borderColor, &red, &green, &blue, &alpha);
+  SDL_Color borderColor = { red, green, blue, alpha };
+
+  if (button.isHovered)
+  {
+      hexToRGBA(button.hoverTextColor, &red, &green, &blue, &alpha);
+      textColor.r = red;
+      textColor.g = green;
+      textColor.b = blue;
+      textColor.a = alpha;
+
+      hexToRGBA(button.hoverBackgroundColor, &red, &green, &blue, &alpha);
+      backgroundColor.r = red;
+      backgroundColor.g = green;
+      backgroundColor.b = blue;
+      backgroundColor.a = alpha;
+  }
+
   // Create a surface from the rendered text
   SDL_Surface* surface = TTF_RenderText_Blended(app->font, button.text, textColor);
 
@@ -31,27 +49,18 @@ int createButton(Button button) {
       return EXIT_FAILURE;
   }
 
-  // Create a destination rectangle for background of button
-  SDL_Rect backgroundRect = { button.x, button.y, button.width + 4, button.height + 4 };
+  // background rectangle
+  SDL_Rect backgroundRect = { button.x, button.y, button.width + button.padding, button.height + button.padding };
   SDL_SetRenderDrawColor(app->renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
   SDL_RenderFillRect(app->renderer, &backgroundRect);
 
-  // Render rounded corners
-  SDL_SetRenderDrawColor(app->renderer, 0, 0, 0, 0); // Set color to transparent
-  SDL_SetRenderDrawBlendMode(app->renderer, SDL_BLENDMODE_BLEND);
-  SDL_Rect corners[4] = {
-    { button.x, button.y, button.radius, button.radius },
-    { button.x + button.width - button.radius, button.y, button.radius, button.radius },
-    { button.x, button.y + button.height - button.radius, button.radius, button.radius },
-    { button.x + button.width - button.radius, button.y + button.height - button.radius, button.radius, button.radius }
-  };
-  for (int i = 0; i < 4; i++)
-  {
-    SDL_RenderFillRect(app->renderer, &corners[i]);
-  }
+  // border rectangles
+  SDL_Rect borderTopRect = { button.x, button.y - button.borderDefaultWidth, button.width + button.padding, button.borderDefaultHeight };
+  SDL_SetRenderDrawColor(app->renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
+  SDL_RenderFillRect(app->renderer, &borderTopRect);
 
   // Create a destination rectangle for rendering the texture
-  SDL_Rect textRect = { button.x + 2, button.y + 2, button.width, button.height };
+  SDL_Rect textRect = { button.x + button.padding / 2, button.y + button.padding / 2, button.width, button.height };
   // Render the texture on the screen
   SDL_RenderCopy(app->renderer, texture, NULL, &textRect);
 
@@ -60,6 +69,22 @@ int createButton(Button button) {
 
   return EXIT_SUCCESS;
 }
+
+  //// Render rounded corners
+  //SDL_SetRenderDrawColor(app->renderer, 128, 128, 128, 125); // Set color to transparent
+  //SDL_SetRenderDrawBlendMode(app->renderer, SDL_BLENDMODE_BLEND);
+  //SDL_Rect corners[4] = {
+  //  { button.x, button.y, button.radius, button.radius },
+  //  { button.x + button.width - button.radius, button.y, button.radius, button.radius },
+  //  { button.x, button.y + button.height - button.radius, button.radius, button.radius },
+  //  { button.x + button.width - button.radius, button.y + button.height - button.radius, button.radius, button.radius }
+  //};
+  //for (int i = 0; i < 4; i++)
+  //{
+  //  SDL_RenderFillRect(app->renderer, &corners[i]);
+  //}
+
+
 
 //void createButton()
 //{
