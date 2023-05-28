@@ -7,9 +7,12 @@
 
 typedef struct SDLApp
 {
-  TTF_Font* font;
   SDL_Window* window;
   SDL_Renderer* renderer;
+
+  TTF_Font* font;
+  const char* fontName;
+  uint8_t fontSize;
 
   int16_t x;
   int16_t y;

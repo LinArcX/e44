@@ -2,6 +2,7 @@
 #define _LABEL_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 typedef struct SDLLabel
 {
@@ -16,6 +17,6 @@ typedef struct SDLLabel
   const char* backgroundColor;
 } Label;
 
-int createLable(Label label);
+int createLable(SDL_Renderer* renderer, TTF_Font* font, Label label);
 
 #endif

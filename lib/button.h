@@ -2,6 +2,7 @@
 #define _BUTTON_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 
 typedef enum _BorderStyle
@@ -27,6 +28,7 @@ typedef struct SDLButton
   const char* textColor;
 
   bool isHovered;
+  const char* hoverText;
   const char* hoverTextColor;
   const char* hoverBackgroundColor;
 
@@ -36,7 +38,7 @@ typedef struct SDLButton
   BorderStyle borderStyle;
 } Button;
 
-int createButton(Button button);
+int createButton(SDL_Renderer* renderer, TTF_Font* font, Button button);
 
 // handlers
 //void (*onHoverHandler)(void);

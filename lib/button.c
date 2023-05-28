@@ -1,12 +1,11 @@
 #include <stddef.h>
 
 #include "button.h"
-#include "app.h"
 #include "util.h"
 
 SDL_Color borderColor = {0};
 
-void CreateLeftBorder(const Button* button)
+void CreateLeftBorder(SDL_Renderer* renderer, const Button* button)
 {
   SDL_Rect rect = {0};
   if(button->borderStyle == ALL)
@@ -23,11 +22,11 @@ void CreateLeftBorder(const Button* button)
    rect.w = button->borderDefaultWidth;
    rect.h = button->height + button->padding;
   }
-  SDL_SetRenderDrawColor(app->renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
-  SDL_RenderFillRect(app->renderer, &rect);
+  SDL_SetRenderDrawColor(renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
+  SDL_RenderFillRect(renderer, &rect);
 }
 
-void CreateRightBorder(const Button* button)
+void CreateRightBorder(SDL_Renderer* renderer, const Button* button)
 {
   SDL_Rect rect = {0};
   if(button->borderStyle == ALL)
@@ -44,11 +43,11 @@ void CreateRightBorder(const Button* button)
     rect.w = button->borderDefaultWidth;
     rect.h = button->height + button->padding;
   }
-  SDL_SetRenderDrawColor(app->renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
-  SDL_RenderFillRect(app->renderer, &rect);
+  SDL_SetRenderDrawColor(renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
+  SDL_RenderFillRect(renderer, &rect);
 }
 
-void CreateTopBorder(const Button* button)
+void CreateTopBorder(SDL_Renderer* renderer, const Button* button)
 {
   SDL_Rect rect = {
     button->x,
@@ -56,11 +55,11 @@ void CreateTopBorder(const Button* button)
     button->width + button->padding,
     button->borderDefaultHeight
   };
-  SDL_SetRenderDrawColor(app->renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
-  SDL_RenderFillRect(app->renderer, &rect);
+  SDL_SetRenderDrawColor(renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
+  SDL_RenderFillRect(renderer, &rect);
 }
 
-void CreateBottomBorder(const Button* button)
+void CreateBottomBorder(SDL_Renderer* renderer, const Button* button)
 {
   SDL_Rect rect = {
     button->x ,
@@ -68,19 +67,19 @@ void CreateBottomBorder(const Button* button)
     button->width + button->padding,
     button->borderDefaultHeight
   };
-  SDL_SetRenderDrawColor(app->renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
-  SDL_RenderFillRect(app->renderer, &rect);
+  SDL_SetRenderDrawColor(renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
+  SDL_RenderFillRect(renderer, &rect);
 }
 
-void CreateAllBorder(const Button* button)
+void CreateAllBorder(SDL_Renderer* renderer, const Button* button)
 {
-  CreateLeftBorder(button);
-  CreateRightBorder(button);
-  CreateTopBorder(button);
-  CreateBottomBorder(button);
+  CreateLeftBorder(renderer, button);
+  CreateRightBorder(renderer, button);
+  CreateTopBorder(renderer, button);
+  CreateBottomBorder(renderer, button);
 }
 
-int createButton(Button button) {
+int createButton(SDL_Renderer* renderer, TTF_Font* font, Button button) {
   uint8_t red, green, blue, alpha;
 
   hexToRGBA(button.textColor, &red, &green, &blue, &alpha);
@@ -111,7 +110,7 @@ int createButton(Button button) {
   }
 
   // Create a surface from the rendered text
-  SDL_Surface* surface = TTF_RenderText_Blended(app->font, button.text, textColor);
+  SDL_Surface* surface = TTF_RenderText_Blended(font, button.text, textColor);
 
   if (!surface)
   {
@@ -120,7 +119,7 @@ int createButton(Button button) {
       return EXIT_FAILURE;
   }
 
-  SDL_Texture* texture = SDL_CreateTextureFromSurface(app->renderer, surface);
+  SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
   if (!texture)
   {
       SDL_Log("Failed to create texture: %s", SDL_GetError());
@@ -130,25 +129,25 @@ int createButton(Button button) {
 
   // background rectangle
   SDL_Rect backgroundRect = { button.x, button.y, button.width + button.padding, button.height + button.padding };
-  SDL_SetRenderDrawColor(app->renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
-  SDL_RenderFillRect(app->renderer, &backgroundRect);
+  SDL_SetRenderDrawColor(renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+  SDL_RenderFillRect(renderer, &backgroundRect);
 
   switch(button.borderStyle)
   {
     case LEFT:
-      CreateLeftBorder(&button);
+      CreateLeftBorder(renderer, &button);
       break;
     case RIGHT:
-      CreateRightBorder(&button);
+      CreateRightBorder(renderer, &button);
       break;
     case TOP:
-      CreateTopBorder(&button);
+      CreateTopBorder(renderer, &button);
       break;
     case BOTTOM:
-      CreateBottomBorder(&button);
+      CreateBottomBorder(renderer, &button);
       break;
     case ALL:
-      CreateAllBorder(&button);
+      CreateAllBorder(renderer, &button);
       break;
     default:
        SDL_Log("ERROR -> unknown border style");
@@ -158,7 +157,7 @@ int createButton(Button button) {
   // Create a destination rectangle for rendering the texture
   SDL_Rect textRect = { button.x + button.padding / 2, button.y + button.padding / 2, button.width, button.height };
   // Render the texture on the screen
-  SDL_RenderCopy(app->renderer, texture, NULL, &textRect);
+  SDL_RenderCopy(renderer, texture, NULL, &textRect);
 
   SDL_FreeSurface(surface);
   SDL_DestroyTexture(texture);
