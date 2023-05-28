@@ -16,20 +16,19 @@ int createLable(Label label) {
   // Create a surface from the rendered text
   SDL_Surface* surface = TTF_RenderText_Blended(app->font, label.text, textColor);
 
-
   if (!surface)
   {
-      SDL_Log("Failed to create surface: %s", TTF_GetError());
-      SDL_FreeSurface(surface);
-      return EXIT_FAILURE;
+    SDL_Log("Failed to create surface: %s", TTF_GetError());
+    SDL_FreeSurface(surface);
+    return EXIT_FAILURE;
   }
 
   SDL_Texture* texture = SDL_CreateTextureFromSurface(app->renderer, surface);
   if (!texture)
   {
-      SDL_Log("Failed to create texture: %s", SDL_GetError());
-      SDL_DestroyTexture(texture);
-      return EXIT_FAILURE;
+    SDL_Log("Failed to create texture: %s", SDL_GetError());
+    SDL_DestroyTexture(texture);
+    return EXIT_FAILURE;
   }
 
   // Create a destination rectangle for background of label

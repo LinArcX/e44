@@ -77,7 +77,7 @@ void mouseRightClickEventDownHandler(int x, int y)
     lblAddRightButtonHandler();
   }
 
-  // lblAdd
+  // btnAdd
   if (x >= btnAdd.x && x <= btnAdd.x + btnAdd.width + btnAdd.padding && y >= btnAdd.y && y <= btnAdd.y + btnAdd.height + btnAdd.padding)
   {
     btnAddRightButtonHandler();
@@ -111,8 +111,8 @@ int initialize()
   lblAdd.height = 20;
   lblAdd.padding = 4;
   lblAdd.text = "Name: ";
-  lblAdd.textColor = "#DADADA";
-  lblAdd.backgroundColor = app->backgroundColor; //#1E1E1E
+  lblAdd.textColor = "#FAFAFA";
+  lblAdd.backgroundColor = app->backgroundColor;
 
   btnAdd.x = lblAdd.x + lblAdd.width;
   btnAdd.y = lblAdd.y;
@@ -123,13 +123,14 @@ int initialize()
   btnAdd.borderDefaultWidth = 2;
   btnAdd.borderDefaultHeight = 2;
   btnAdd.isHovered = false;
+  btnAdd.borderStyle = ALL;
   btnAdd.text = "Search";
-  btnAdd.textColor = "#DADADA";
+  btnAdd.textColor = "#FAFAFA"; //#DADADA,
   btnAdd.backgroundColor = "#262626";
-  btnAdd.borderColor = "#FF7043";
+  btnAdd.borderColor = "#616161";
   btnAdd.backgroundColor = "#262626";
   btnAdd.hoverTextColor = "#212121";
-  btnAdd.hoverBackgroundColor = "#66BB6A"; //#FF7043, #FF8A65
+  btnAdd.hoverBackgroundColor = "#A5D6A7"; //#FF7043, #FF8A65, #66BB6A, #1E1E1E
 
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
       printf("SDL initialization failed. SDL Error: %s\n", SDL_GetError());

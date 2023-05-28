@@ -9,10 +9,20 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
+ALL	src/button.h	/^  ALL$/;"	e	enum:_BorderStyle	access:public
 App	src/app.h	/^}App;$/;"	t	typeref:struct:SDLApp
+BOTTOM	src/button.h	/^  BOTTOM,$/;"	e	enum:_BorderStyle	access:public
+BorderStyle	src/button.h	/^} BorderStyle;$/;"	t	typeref:enum:_BorderStyle
 Button	src/button.h	/^} Button;$/;"	t	typeref:struct:SDLButton
+CreateAllBorder	src/button.c	/^void CreateAllBorder(const Button* button)$/;"	f	typeref:typename:void	signature:(const Button * button)
+CreateBottomBorder	src/button.c	/^void CreateBottomBorder(const Button* button)$/;"	f	typeref:typename:void	signature:(const Button * button)
+CreateLeftBorder	src/button.c	/^void CreateLeftBorder(const Button* button)$/;"	f	typeref:typename:void	signature:(const Button * button)
+CreateRightBorder	src/button.c	/^void CreateRightBorder(const Button* button)$/;"	f	typeref:typename:void	signature:(const Button * button)
+CreateTopBorder	src/button.c	/^void CreateTopBorder(const Button* button)$/;"	f	typeref:typename:void	signature:(const Button * button)
+LEFT	src/button.h	/^  LEFT = 0,$/;"	e	enum:_BorderStyle	access:public
 Label	src/label.h	/^} Label;$/;"	t	typeref:struct:SDLLabel
 README.md	README.md	1;"	F	epoch:1684960758
+RIGHT	src/button.h	/^  RIGHT,$/;"	e	enum:_BorderStyle	access:public
 SDLApp	src/app.h	/^typedef struct SDLApp$/;"	s
 SDLApp::backgroundColor	src/app.h	/^  const char* backgroundColor;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 SDLApp::font	src/app.h	/^  TTF_Font* font;$/;"	m	struct:SDLApp	typeref:typename:TTF_Font *	access:public
@@ -27,6 +37,7 @@ SDLButton::backgroundColor	src/button.h	/^  const char* backgroundColor;$/;"	m	s
 SDLButton::borderColor	src/button.h	/^  const char* borderColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 SDLButton::borderDefaultHeight	src/button.h	/^  uint8_t borderDefaultHeight;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
 SDLButton::borderDefaultWidth	src/button.h	/^  uint8_t borderDefaultWidth;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
+SDLButton::borderStyle	src/button.h	/^  BorderStyle borderStyle;$/;"	m	struct:SDLButton	typeref:typename:BorderStyle	access:public
 SDLButton::height	src/button.h	/^  uint16_t height;$/;"	m	struct:SDLButton	typeref:typename:uint16_t	access:public
 SDLButton::hoverBackgroundColor	src/button.h	/^  const char* hoverBackgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 SDLButton::hoverTextColor	src/button.h	/^  const char* hoverTextColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
@@ -48,8 +59,10 @@ SDLLabel::textColor	src/label.h	/^  const char* textColor;$/;"	m	struct:SDLLabel
 SDLLabel::width	src/label.h	/^  uint16_t width;$/;"	m	struct:SDLLabel	typeref:typename:uint16_t	access:public
 SDLLabel::x	src/label.h	/^  int16_t x;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public
 SDLLabel::y	src/label.h	/^  int16_t y;$/;"	m	struct:SDLLabel	typeref:typename:int16_t	access:public
+TOP	src/button.h	/^  TOP,$/;"	e	enum:_BorderStyle	access:public
 _APP_H	src/app.h	/^#define _APP_H$/;"	d
 _BUTTON_H	src/button.h	/^#define _BUTTON_H$/;"	d
+_BorderStyle	src/button.h	/^typedef enum _BorderStyle$/;"	g
 _LABEL_H	src/label.h	/^#define _LABEL_H$/;"	d
 _TYPES_HPP	src/types.h	/^#define _TYPES_HPP$/;"	d
 _UTIL_H	src/util.h	/^#define _UTIL_H$/;"	d
@@ -64,20 +77,22 @@ _generateTags	project.sh	/^_generateTags() {$/;"	f
 _run	project.sh	/^_run() {$/;"	f
 _valgrind	project.sh	/^_valgrind() {$/;"	f
 app	src/app.c	/^App* app;$/;"	v	typeref:typename:App *
-app.c	src/app.c	1;"	F	epoch:1685266376
+app.c	src/app.c	1;"	F	epoch:1685269182
 app.h	src/app.h	1;"	F	epoch:1685265539
 backgroundColor	src/app.h	/^  const char* backgroundColor;$/;"	m	struct:SDLApp	typeref:typename:const char *	access:public
 backgroundColor	src/button.h	/^  const char* backgroundColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 backgroundColor	src/label.h	/^  const char* backgroundColor;$/;"	m	struct:SDLLabel	typeref:typename:const char *	access:public
+borderColor	src/button.c	/^SDL_Color borderColor = {0};$/;"	v	typeref:typename:SDL_Color
 borderColor	src/button.h	/^  const char* borderColor;$/;"	m	struct:SDLButton	typeref:typename:const char *	access:public
 borderDefaultHeight	src/button.h	/^  uint8_t borderDefaultHeight;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
 borderDefaultWidth	src/button.h	/^  uint8_t borderDefaultWidth;$/;"	m	struct:SDLButton	typeref:typename:uint8_t	access:public
+borderStyle	src/button.h	/^  BorderStyle borderStyle;$/;"	m	struct:SDLButton	typeref:typename:BorderStyle	access:public
 btnAdd	src/app.c	/^Button btnAdd;$/;"	v	typeref:typename:Button
 btnAddHoverHandler	src/app.c	/^void btnAddHoverHandler()$/;"	f	typeref:typename:void	signature:()
 btnAddLeftButtonHandler	src/app.c	/^void btnAddLeftButtonHandler()$/;"	f	typeref:typename:void	signature:()
 btnAddRightButtonHandler	src/app.c	/^void btnAddRightButtonHandler()$/;"	f	typeref:typename:void	signature:()
-button.c	src/button.c	1;"	F	epoch:1685266396
-button.h	src/button.h	1;"	F	epoch:1685263654
+button.c	src/button.c	1;"	F	epoch:1685268972
+button.h	src/button.h	1;"	F	epoch:1685267955
 cleanup	src/app.c	/^void cleanup()$/;"	f	typeref:typename:void	signature:()
 createButton	src/button.c	/^int createButton(Button button) {$/;"	f	typeref:typename:int	signature:(Button button)
 createLable	src/label.c	/^int createLable(Label label) {$/;"	f	typeref:typename:int	signature:(Label label)
